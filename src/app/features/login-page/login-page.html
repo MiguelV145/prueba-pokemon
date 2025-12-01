@@ -1,0 +1,43 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="p-4 rounded-4 shadow-lg bg-light">
+
+  <div class="mb-4">
+    <label class="form-label fw-semibold text-primary">Email</label>
+    <input 
+      type="email"
+      formControlName="email" 
+      class="form-control border-primary shadow-sm" 
+      placeholder="example@mail.com">
+
+    @if(formUtils.isValidField(myForm, 'email')) {
+      <span class="form-text text-danger fw-semibold">
+        {{ formUtils.getFieldError(myForm, 'email') }}
+      </span>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label class="form-label fw-semibold text-primary">Password</label>
+    <input 
+      type="password"
+      formControlName="password" 
+      class="form-control border-primary shadow-sm" 
+      placeholder="Mínimo 6 caracteres">
+
+    @if(formUtils.isValidField(myForm, 'password')) {
+      <span class="form-text text-danger fw-semibold">
+        {{ formUtils.getFieldError(myForm, 'password') }}
+      </span>
+    }
+  </div>
+
+  @if(errorMessage) {
+    <div class="alert alert-error mb-3">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <button class="btn btn-primary w-100 py-2 fw-bold rounded-pill shadow-sm" type="submit">
+    Ingresar
+  </button>
+
+</form>

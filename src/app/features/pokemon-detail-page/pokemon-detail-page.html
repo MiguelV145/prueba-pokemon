@@ -1,0 +1,58 @@
+<section class="container mx-auto p-4">
+  <a routerLink="/home" class="btn btn-ghost mb-4">← Volver</a>
+
+  @if(!pokemon()) {
+    <div class="card p-6 flex justify-center items-center">Cargando detalle...</div>
+  }
+
+  @if(pokemon()) {
+    <article class="card p-6 shadow-md rounded-md">
+      <header class="flex items-center gap-4 mb-4">
+        <figure>
+          <img src="{{ pokemon()?.sprites?.front_default }}" alt="{{ pokemon()?.name }}" class="w-28 h-28 object-contain" *ngIf="pokemon()?.sprites?.front_default" />
+        </figure>
+        <div>
+          <h1 class="text-2xl font-bold capitalize">{{ pokemon()?.name }} <span class="text-sm text-muted">#{{ pokemon()?.id }}</span></h1>
+          <p class="text-sm text-muted">Orden: {{ pokemon()?.order }}</p>
+        </div>
+      </header>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-semibold">Datos</h3>
+          <ul class="list-disc pl-5">
+            <li>Altura: {{ pokemon()?.height }}</li>
+            <li>Peso: {{ pokemon()?.weight }}</li>
+            <li>Experiencia base: {{ pokemon()?.base_experience }}</li>
+            <li>Número de movimientos: {{ pokemon()?.moves?.length ?? 0 }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold">Tipos</h3>
+          <div class="flex gap-2 flex-wrap mt-2">
+            @for(type of pokemon()?.types ?? []; track type.slot) {
+              <span class="badge badge-outline capitalize">{{ type.type.name }}</span>
+            }
+          </div>
+
+          <h3 class="mt-4 font-semibold">Estadísticas principales</h3>
+          <ul class="list-none mt-2">
+            @for(s of pokemon()?.stats ?? []; track s.stat.name) {
+              <li>{{ s.stat.name }}: {{ s.base_stat }}</li>
+            }
+          </ul>
+
+          <h3 class="mt-4 font-semibold">Habilidades ocultas</h3>
+          <ul class="list-disc pl-5">
+            @for(a of pokemon()?.abilities ?? []; track a.ability.name) {
+              @if(a.is_hidden) {
+                <li class="capitalize">{{ a.ability.name }}</li>
+              }
+            }
+          </ul>
+        </div>
+      </section>
+    </article>
+  }
+</section>
