@@ -65,7 +65,7 @@ function rxResource<T>(opts: {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeroPokemon, HeaderPage],
+  imports: [CommonModule, RouterModule, HeroPokemon,],
   templateUrl: './home-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
