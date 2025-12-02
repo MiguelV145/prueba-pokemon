@@ -13,8 +13,11 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/pruba1",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "baseHref": "/prueba-pokemon/",
+            "deployUrl": "/prueba-pokemon/",
             "assets": [
               {
                 "glob": "**/*",
@@ -22,6 +25,7 @@
               }
             ],
             "styles": [
+
               "src/styles.css"
             ]
           },
@@ -39,7 +43,9 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/prueba-pokemon/",
+              "deployUrl": "/prueba-pokemon/"
             },
             "development": {
               "optimization": false,
@@ -84,6 +90,9 @@
               "src/styles.css"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

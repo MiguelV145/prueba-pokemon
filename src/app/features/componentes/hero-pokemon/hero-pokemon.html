@@ -1,1 +1,53 @@
-<p>hero-pokemon works!</p>,
+<div class="hero min-h-[500px] relative overflow-hidden bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white font-sans">
+  <svg class="absolute -right-20 -bottom-40 w-96 h-96 text-white opacity-10 rotate-12 pointer-events-none" fill="currentColor" viewBox="0 0 24 24">
+  </svg>
+
+  <div class="hero-content flex-col lg:flex-row-reverse gap-8 lg:gap-16 z-10 w-full max-w-6xl p-6">
+    
+    <div class="relative group">
+      <div class="absolute inset-0 bg-yellow-300 blur-3xl opacity-30 rounded-full animate-pulse"></div>
+      
+      <img 
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" 
+        class="max-w-xs md:max-w-sm rounded-lg drop-shadow-2xl transform transition-transform duration-700 hover:scale-110 hover:-rotate-3 animate-bounce-slow" 
+        alt="Pikachu Welcome" 
+      />
+    </div>
+
+    <div class="text-center lg:text-left flex-1">
+      
+
+
+      <h1 class="text-6xl md:text-7xl font-black drop-shadow-lg tracking-tighter mb-2">
+        Mundo Pokémon
+      </h1>
+      
+      <p class="py-6 text-lg md:text-xl font-medium opacity-90 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+        Explora la enciclopedia definitiva. Descubre especies, analiza estadísticas y conviértete en el mejor maestro.
+      </p>
+
+      <div class="stats stats-horizontal shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white mt-4 overflow-visible">
+        
+        <div class="stat place-items-center lg:place-items-start px-6 py-4 transition-colors hover:bg-white/10">
+          <div class="stat-figure text-yellow-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          </div>
+          <div class="stat-title text-yellow-100 font-bold opacity-80">Total Pokémon</div>
+          <div class="stat-value text-4xl drop-shadow-sm">{{ pokemonCount() }}</div>
+          <div class="stat-desc text-white/70 font-medium">Registrados</div>
+        </div>
+
+        <div class="stat place-items-center lg:place-items-start px-6 py-4 border-l border-white/20 transition-colors hover:bg-white/10">
+          <div class="stat-figure text-yellow-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div class="stat-title text-yellow-100 font-bold opacity-80">Páginas</div>
+          <div class="stat-value text-4xl drop-shadow-sm">{{ totalPages() }}</div>
+          <div class="stat-desc text-white/70 font-medium">Disponibles</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

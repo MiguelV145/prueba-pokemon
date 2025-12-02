@@ -1,43 +1,125 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="p-4 rounded-4 shadow-lg bg-light">
+<div class="hero min-h-screen bg-gradient-to-br  to-slate-900   font-sans">
+  
+  <svg class="absolute -left-20 -bottom-20 w-[500px] h-[500px] text-white opacity-5 animate-[spin_60s_linear_infinite]" fill="currentColor" viewBox="0 0 24 24">
+  </svg>
 
-  <div class="mb-4">
-    <label class="form-label fw-semibold text-primary">Email</label>
-    <input 
-      type="email"
-      formControlName="email" 
-      class="form-control border-primary shadow-sm" 
-      placeholder="example@mail.com">
+  <div class="hero-content flex-col lg:flex-row-reverse w-full max-w-5xl justify-between gap-10 z-10">
+    
+    <div class="text-center lg:text-left lg:w-1/2 relative group">
+      
+      <h1 class="text-5xl lg:text-7xl font-black text-white drop-shadow-lg tracking-tight mb-2">
+        ¡Hola,Entrenador!
+      </h1>
+      <p class="py-6 text-lg text-blue-100/80 font-medium max-w-md mx-auto lg:mx-0">
+        Tu viaje comienza aquí. Accede para gestionar tu equipo, ver estadísticas y completar la Pokédex.
+      </p>
 
-    @if(formUtils.isValidField(myForm, 'email')) {
-      <span class="form-text text-danger fw-semibold">
-        {{ formUtils.getFieldError(myForm, 'email') }}
-      </span>
-    }
-  </div>
-
-  <div class="mb-4">
-    <label class="form-label fw-semibold text-primary">Password</label>
-    <input 
-      type="password"
-      formControlName="password" 
-      class="form-control border-primary shadow-sm" 
-      placeholder="Mínimo 6 caracteres">
-
-    @if(formUtils.isValidField(myForm, 'password')) {
-      <span class="form-text text-danger fw-semibold">
-        {{ formUtils.getFieldError(myForm, 'password') }}
-      </span>
-    }
-  </div>
-
-  @if(errorMessage) {
-    <div class="alert alert-error mb-3">
-      {{ errorMessage }}
+      <div class="flex justify-center lg:justify-start">
+        <div class="relative w-64 h-64 lg:w-80 lg:h-80 transition-transform duration-700 hover:scale-105 hover:-rotate-2">
+          <div class="absolute inset-0 bg-blue-500/30 blur-3xl rounded-full animate-pulse"></div>
+          <img 
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" 
+            alt="Pokemon Login Mascot" 
+            class="w-full h-full object-contain drop-shadow-2xl relative z-10"
+          />
+        </div>
+      </div>
     </div>
-  }
 
-  <button class="btn btn-primary w-100 py-2 fw-bold rounded-pill shadow-sm" type="submit">
-    Ingresar
-  </button>
+    <div class="card w-full max-w-sm shadow-2xl bg-white/10 backdrop-blur-md border border-white/20 relative overflow-hidden">
+      
+      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r " ></div>
 
-</form>
+      <div class="card-body">
+        <h2 class="text-2xl font-bold text-white text-center mb-4">Acceso Pokédex</h2>
+
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <fieldset class="fieldset gap-5">
+            
+            <div class="w-full">
+              <label class="label pb-1">
+                <span class="label-text font-semibold text-blue-100">Email</span>
+              </label>
+              
+              <label class="input input-bordered flex items-center gap-2 bg-white/90 focus-within:bg-white text-gray-800 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" /><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" /></svg>
+                
+                <input 
+                  type="email" 
+                  class="grow placeholder:text-gray-400" 
+                  [class.text-error]="!formUtils.isValidField(myForm, 'email') && myForm.get('email')?.touched"
+                  placeholder="entrenador@ups.edu.ec" 
+                  formControlName="email"
+                />
+              </label>
+
+              @if (formUtils.isValidField(myForm, 'email')) {
+                <span class="text-red-300 text-xs mt-1 font-bold flex items-center gap-1 animate-pulse">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                  {{ formUtils.getFieldError(myForm, 'email') }}
+                </span>
+              }
+            </div>
+
+            <div class="w-full">
+              <label class="label pb-1">
+                <span class="label-text font-semibold text-blue-100">Password</span>
+              </label>
+              
+              <label class="input input-bordered flex items-center gap-2 bg-white/90 focus-within:bg-white text-gray-800 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clip-rule="evenodd" /></svg>
+                
+                <input 
+                  type="password" 
+                  class="grow placeholder:text-gray-400" 
+                  placeholder="••••••••" 
+                  formControlName="password"
+                />
+              </label>
+
+              @if (formUtils.isValidField(myForm, 'password')) {
+                <span class="text-red-300 text-xs mt-1 font-bold flex items-center gap-1 animate-pulse">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                  {{ formUtils.getFieldError(myForm, 'password') }}
+                </span>
+              }
+            </div>
+
+            @if(errorMessage) {
+              <div role="alert" class="alert alert-error bg-red-500/90 border-none text-white mt-2 p-2 text-sm shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold">{{ errorMessage }}</span>
+              </div>
+            }
+
+            <button 
+              class="btn btn-primary bg-gradient-to-r border-none text-black font-bold hover:scale-105 hover:from-yellow-300 hover:to-orange-400 mt-4 w-full shadow-lg transition-transform" 
+              type="submit"
+              [disabled]="isLoading()"> 
+              
+              @if(isLoading()) {
+                <span class="loading loading-spinner loading-sm"></span>
+                <span>Verificando...</span>
+              } @else {
+                INGRESAR
+              }
+            </button>
+
+            <div class="divider before:bg-white/20 after:bg-white/20 text-xs text-blue-200 my-2">O</div>
+
+            <div class="indicator w-full group">
+              <span class="indicator-item badge badge-secondary text-[10px] font-bold shadow-md">
+                Próximamente
+              </span>
+              <button type="button" class="btn btn-outline border-white/40 text-white hover:bg-white hover:text-blue-900 w-full hover:border-white">
+                Crear cuenta nueva
+              </button>
+            </div>
+
+          </fieldset>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>

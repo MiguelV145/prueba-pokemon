@@ -1,58 +1,126 @@
-<section class="container mx-auto p-4">
-  <a routerLink="/home" class="btn btn-ghost mb-4">← Volver</a>
+<section class="container mx-auto p-4 lg:p-8 max-w-5xl font-sans">
+  
+  <a routerLink="/home" class="btn btn-ghost gap-2 mb-6 hover:bg-base-200 group">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform"><path d="m15 18-6-6 6-6"/></svg>
+    Volver a la Pokédex
+  </a>
 
   @if(!pokemon()) {
-    <div class="card p-6 flex justify-center items-center">Cargando detalle...</div>
+    <div class="card w-full h-96 bg-base-100 shadow-xl animate-pulse flex flex-col items-center justify-center gap-4">
+      <span class="loading loading-ring loading-lg text-primary scale-150"></span>
+      <span class="text-xl font-bold opacity-50 tracking-widest">ANALIZANDO DATOS...</span>
+    </div>
   }
 
   @if(pokemon()) {
-    <article class="card p-6 shadow-md rounded-md">
-      <header class="flex items-center gap-4 mb-4">
-        <figure>
-          <img src="{{ pokemon()?.sprites?.front_default }}" alt="{{ pokemon()?.name }}" class="w-28 h-28 object-contain" *ngIf="pokemon()?.sprites?.front_default" />
-        </figure>
-        <div>
-          <h1 class="text-2xl font-bold capitalize">{{ pokemon()?.name }} <span class="text-sm text-muted">#{{ pokemon()?.id }}</span></h1>
-          <p class="text-sm text-muted">Orden: {{ pokemon()?.order }}</p>
-        </div>
-      </header>
+    <article class="card lg:card-side bg-base-100 shadow-2xl overflow-hidden border border-base-200 rounded-3xl relative">
+      
+      <div class="absolute top-0 w-full h-32 bg-gradient-to-b from-primary/10 to-transparent z-0 pointer-events-none"></div>
 
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <h3 class="font-semibold">Datos</h3>
-          <ul class="list-disc pl-5">
-            <li>Altura: {{ pokemon()?.height }}</li>
-            <li>Peso: {{ pokemon()?.weight }}</li>
-            <li>Experiencia base: {{ pokemon()?.base_experience }}</li>
-            <li>Número de movimientos: {{ pokemon()?.moves?.length ?? 0 }}</li>
-          </ul>
+      <figure class="lg:w-1/3 bg-base-200/50 p-8 flex flex-col items-center justify-center relative z-10 group">
+        
+        <span class="absolute top-4 right-6 text-6xl md:text-8xl font-black text-base-300/50 select-none z-0">
+          #{{ pokemon()?.id }}
+        </span>
+
+        <div class="relative z-10 transition-transform duration-500 hover:scale-110 hover:rotate-3 cursor-pointer">
+          <div class="absolute inset-0 bg-primary/30 blur-3xl rounded-full scale-75"></div>
+          
+          <img
+            [src]="pokemon()?.sprites?.other?.['official-artwork']?.front_default || pokemon()?.sprites?.front_default"
+            [alt]="pokemon()?.name"
+            class="w-64 h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl relative"
+          />
         </div>
 
-        <div>
-          <h3 class="font-semibold">Tipos</h3>
-          <div class="flex gap-2 flex-wrap mt-2">
+        <div class="text-center mt-6 z-10">
+          <h1 class="text-4xl font-black capitalize tracking-tight mb-3 drop-shadow-sm">
+            {{ pokemon()?.name }}
+          </h1>
+          <div class="flex flex-wrap justify-center gap-2">
             @for(type of pokemon()?.types ?? []; track type.slot) {
-              <span class="badge badge-outline capitalize">{{ type.type.name }}</span>
+              <span 
+                class="badge badge-lg border-none text-white font-bold shadow-md uppercase tracking-wider py-4 px-6"
+                [ngClass]="typeColor(type.type.name)">
+                {{ type.type.name }}
+              </span>
             }
           </div>
-
-          <h3 class="mt-4 font-semibold">Estadísticas principales</h3>
-          <ul class="list-none mt-2">
-            @for(s of pokemon()?.stats ?? []; track s.stat.name) {
-              <li>{{ s.stat.name }}: {{ s.base_stat }}</li>
-            }
-          </ul>
-
-          <h3 class="mt-4 font-semibold">Habilidades ocultas</h3>
-          <ul class="list-disc pl-5">
-            @for(a of pokemon()?.abilities ?? []; track a.ability.name) {
-              @if(a.is_hidden) {
-                <li class="capitalize">{{ a.ability.name }}</li>
-              }
-            }
-          </ul>
         </div>
-      </section>
+      </figure>
+
+      <div class="card-body lg:w-2/3 p-6 lg:p-10 z-10">
+        
+        <div class="stats stats-vertical sm:stats-horizontal shadow-sm border border-base-200 bg-base-100 w-full mb-8">
+          
+          <div class="stat place-items-center">
+            <div class="stat-figure text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div class="stat-title font-bold">Exp. Base</div>
+            <div class="stat-value text-primary">{{ pokemon()?.base_experience }}</div>
+            <div class="stat-desc">Puntos</div>
+          </div>
+          
+          <div class="stat place-items-center">
+            <div class="stat-title font-bold">Altura</div>
+            <div class="stat-value">{{ pokemon()?.height }}</div>
+            <div class="stat-desc">Decímetros</div>
+          </div>
+          
+          <div class="stat place-items-center">
+            <div class="stat-title font-bold">Peso</div>
+            <div class="stat-value">{{ pokemon()?.weight }}</div>
+            <div class="stat-desc">Hectogramos</div>
+          </div>
+          
+        </div>
+
+        <div class="space-y-5">
+          <h3 class="text-xl font-bold flex items-center gap-2 border-b pb-2 border-base-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            Estadísticas de Combate
+          </h3>
+
+          <div class="grid gap-4">
+            @for(s of pokemon()?.stats ?? []; track s.stat.name) {
+              <div class="grid grid-cols-12 items-center gap-4 group">
+                <span class="col-span-4 sm:col-span-3 font-bold uppercase text-xs tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
+                  {{ s.stat.name | slice:0:15 }}
+                </span>
+                
+                <span class="col-span-2 sm:col-span-1 text-right font-black text-sm">{{ s.base_stat }}</span>
+                
+                <div class="col-span-6 sm:col-span-8">
+                  <progress 
+                    class="progress w-full h-3 transition-all duration-1000" 
+                    [class.progress-success]="s.base_stat >= 100" 
+                    [class.progress-warning]="s.base_stat >= 60 && s.base_stat < 100" 
+                    [class.progress-error]="s.base_stat < 60"
+                    [value]="s.base_stat" 
+                    max="160">
+                  </progress>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-base-200">
+          <h3 class="text-sm font-bold uppercase opacity-50 mb-3 tracking-widest">Habilidades</h3>
+          <div class="flex flex-wrap gap-3">
+            @for(a of pokemon()?.abilities ?? []; track a.ability.name) {
+              <div class="badge badge-outline p-4 gap-2 capitalize font-semibold hover:bg-base-200 transition-colors cursor-default" [class.badge-accent]="a.is_hidden">
+                {{ a.ability.name }}
+                @if(a.is_hidden) { 
+                  <span class="badge badge-xs badge-ghost border-none bg-base-300">Oculta</span> 
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
     </article>
   }
 </section>

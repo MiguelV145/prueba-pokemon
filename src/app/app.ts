@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderPage } from "./features/componentes/header-page/header-page";
+import { FooterPage } from "./features/componentes/footer-page/footer-page";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderPage],
+  standalone: true,
+  imports: [RouterOutlet, HeaderPage, FooterPage],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('pruba1');
