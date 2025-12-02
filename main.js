@@ -46473,54 +46473,86 @@ var FormUtils = class _FormUtils {
 };
 
 // src/app/features/login-page/login-page.ts
-function LoginPage_Conditional_5_Template(rf, ctx) {
+function LoginPage_Conditional_28_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 4);
-    \u0275\u0275text(1);
+    \u0275\u0275elementStart(0, "span", 24);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(1, "svg", 33);
+    \u0275\u0275element(2, "path", 34);
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275advance();
+    \u0275\u0275advance(3);
     \u0275\u0275textInterpolate1(" ", ctx_r0.formUtils.getFieldError(ctx_r0.myForm, "email"), " ");
   }
 }
-function LoginPage_Conditional_10_Template(rf, ctx) {
+function LoginPage_Conditional_37_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 4);
-    \u0275\u0275text(1);
+    \u0275\u0275elementStart(0, "span", 24);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(1, "svg", 33);
+    \u0275\u0275element(2, "path", 34);
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275advance();
+    \u0275\u0275advance(3);
     \u0275\u0275textInterpolate1(" ", ctx_r0.formUtils.getFieldError(ctx_r0.myForm, "password"), " ");
   }
 }
-function LoginPage_Conditional_11_Template(rf, ctx) {
+function LoginPage_Conditional_38_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 6);
-    \u0275\u0275text(1);
+    \u0275\u0275elementStart(0, "div", 27);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(1, "svg", 35);
+    \u0275\u0275element(2, "path", 36);
     \u0275\u0275elementEnd();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(3, "span", 37);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", ctx_r0.errorMessage, " ");
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate(ctx_r0.errorMessage);
+  }
+}
+function LoginPage_Conditional_40_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275element(0, "span", 38);
+    \u0275\u0275elementStart(1, "span");
+    \u0275\u0275text(2, "Verificando...");
+    \u0275\u0275elementEnd();
+  }
+}
+function LoginPage_Conditional_41_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " INGRESAR ");
   }
 }
 var LoginPage = class _LoginPage {
   fb = inject2(FormBuilder);
   router = inject2(Router);
+  isLoading = signal(false, ...ngDevMode ? [{ debugName: "isLoading" }] : []);
   formUtils = FormUtils;
   USER = {
     email: "usuario@ups.edu.ec",
     password: "123456"
   };
+  showPassword = false;
   errorMessage = null;
   myForm = this.fb.group({
     email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required, Validators.minLength(6)]]
+    password: ["", [
+      Validators.required,
+      Validators.minLength(6)
+    ]]
   });
   onSubmit() {
     this.errorMessage = null;
@@ -46528,140 +46560,236 @@ var LoginPage = class _LoginPage {
       this.myForm.markAllAsTouched();
       return;
     }
+    this.isLoading.set(true);
     const { email, password } = this.myForm.value;
-    if (email === this.USER.email && password === this.USER.password) {
-      this.router.navigate(["/home"]);
-    } else {
-      this.errorMessage = "Credenciales incorrectas. Verifique email y password.";
-      this.myForm.get("password")?.reset();
-    }
+    setTimeout(() => {
+      if (email === this.USER.email && password === this.USER.password) {
+        this.router.navigate(["/home"]);
+      } else {
+        this.errorMessage = "Credenciales incorrectas. Verifique email y password.";
+        this.myForm.get("password")?.reset();
+      }
+      this.isLoading.set(false);
+    }, 1200);
   }
   static \u0275fac = function LoginPage_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _LoginPage)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LoginPage, selectors: [["app-login-page"]], decls: 14, vars: 4, consts: [[1, "p-4", "rounded-4", "shadow-lg", "bg-light", 3, "ngSubmit", "formGroup"], [1, "mb-4"], [1, "form-label", "fw-semibold", "text-primary"], ["type", "email", "formControlName", "email", "placeholder", "example@mail.com", 1, "form-control", "border-primary", "shadow-sm"], [1, "form-text", "text-danger", "fw-semibold"], ["type", "password", "formControlName", "password", "placeholder", "M\xEDnimo 6 caracteres", 1, "form-control", "border-primary", "shadow-sm"], [1, "alert", "alert-error", "mb-3"], ["type", "submit", 1, "btn", "btn-primary", "w-100", "py-2", "fw-bold", "rounded-pill", "shadow-sm"]], template: function LoginPage_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LoginPage, selectors: [["app-login-page"]], decls: 49, vars: 8, consts: [[1, "hero", "min-h-screen", "bg-gradient-to-br", "to-slate-900", "font-sans"], ["fill", "currentColor", "viewBox", "0 0 24 24", 1, "absolute", "-left-20", "-bottom-20", "w-[500px]", "h-[500px]", "text-white", "opacity-5", "animate-[spin_60s_linear_infinite]"], [1, "hero-content", "flex-col", "lg:flex-row-reverse", "w-full", "max-w-5xl", "justify-between", "gap-10", "z-10"], [1, "text-center", "lg:text-left", "lg:w-1/2", "relative", "group"], [1, "text-5xl", "lg:text-7xl", "font-black", "text-white", "drop-shadow-lg", "tracking-tight", "mb-2"], [1, "py-6", "text-lg", "text-blue-100/80", "font-medium", "max-w-md", "mx-auto", "lg:mx-0"], [1, "flex", "justify-center", "lg:justify-start"], [1, "relative", "w-64", "h-64", "lg:w-80", "lg:h-80", "transition-transform", "duration-700", "hover:scale-105", "hover:-rotate-2"], [1, "absolute", "inset-0", "bg-blue-500/30", "blur-3xl", "rounded-full", "animate-pulse"], ["src", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png", "alt", "Pokemon Login Mascot", 1, "w-full", "h-full", "object-contain", "drop-shadow-2xl", "relative", "z-10"], [1, "card", "w-full", "max-w-sm", "shadow-2xl", "bg-white/10", "backdrop-blur-md", "border", "border-white/20", "relative", "overflow-hidden"], [1, "absolute", "top-0", "left-0", "w-full", "h-2", "bg-gradient-to-r"], [1, "card-body"], [1, "text-2xl", "font-bold", "text-white", "text-center", "mb-4"], [3, "ngSubmit", "formGroup"], [1, "fieldset", "gap-5"], [1, "w-full"], [1, "label", "pb-1"], [1, "label-text", "font-semibold", "text-blue-100"], [1, "input", "input-bordered", "flex", "items-center", "gap-2", "bg-white/90", "focus-within:bg-white", "text-gray-800", "shadow-sm"], ["xmlns", "http://www.w3.org/2000/svg", "viewBox", "0 0 16 16", "fill", "currentColor", 1, "w-4", "h-4", "opacity-70"], ["d", "M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"], ["d", "M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"], ["type", "email", "placeholder", "entrenador@ups.edu.ec", "formControlName", "email", 1, "grow", "placeholder:text-gray-400"], [1, "text-red-300", "text-xs", "mt-1", "font-bold", "flex", "items-center", "gap-1", "animate-pulse"], ["fill-rule", "evenodd", "d", "M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z", "clip-rule", "evenodd"], ["type", "password", "placeholder", "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022", "formControlName", "password", 1, "grow", "placeholder:text-gray-400"], ["role", "alert", 1, "alert", "alert-error", "bg-red-500/90", "border-none", "text-white", "mt-2", "p-2", "text-sm", "shadow-lg"], ["type", "submit", 1, "btn", "btn-primary", "bg-gradient-to-r", "border-none", "text-black", "font-bold", "hover:scale-105", "hover:from-yellow-300", "hover:to-orange-400", "mt-4", "w-full", "shadow-lg", "transition-transform", 3, "disabled"], [1, "divider", "before:bg-white/20", "after:bg-white/20", "text-xs", "text-blue-200", "my-2"], [1, "indicator", "w-full", "group"], [1, "indicator-item", "badge", "badge-secondary", "text-[10px]", "font-bold", "shadow-md"], ["type", "button", 1, "btn", "btn-outline", "border-white/40", "text-white", "hover:bg-white", "hover:text-blue-900", "w-full", "hover:border-white"], ["xmlns", "http://www.w3.org/2000/svg", "viewBox", "0 0 20 20", "fill", "currentColor", 1, "h-3", "w-3"], ["fill-rule", "evenodd", "d", "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z", "clip-rule", "evenodd"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "stroke-current", "shrink-0", "h-6", "w-6"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"], [1, "font-bold"], [1, "loading", "loading-spinner", "loading-sm"]], template: function LoginPage_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "form", 0);
-      \u0275\u0275listener("ngSubmit", function LoginPage_Template_form_ngSubmit_0_listener() {
+      \u0275\u0275elementStart(0, "div", 0);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275element(1, "svg", 1);
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275elementStart(2, "div", 2)(3, "div", 3)(4, "h1", 4);
+      \u0275\u0275text(5, " \xA1Hola,Entrenador! ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(6, "p", 5);
+      \u0275\u0275text(7, " Tu viaje comienza aqu\xED. Accede para gestionar tu equipo, ver estad\xEDsticas y completar la Pok\xE9dex. ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(8, "div", 6)(9, "div", 7);
+      \u0275\u0275element(10, "div", 8)(11, "img", 9);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275elementStart(12, "div", 10);
+      \u0275\u0275element(13, "div", 11);
+      \u0275\u0275elementStart(14, "div", 12)(15, "h2", 13);
+      \u0275\u0275text(16, "Acceso Pok\xE9dex");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(17, "form", 14);
+      \u0275\u0275listener("ngSubmit", function LoginPage_Template_form_ngSubmit_17_listener() {
         return ctx.onSubmit();
       });
-      \u0275\u0275elementStart(1, "div", 1)(2, "label", 2);
-      \u0275\u0275text(3, "Email");
-      \u0275\u0275elementEnd();
-      \u0275\u0275element(4, "input", 3);
-      \u0275\u0275conditionalCreate(5, LoginPage_Conditional_5_Template, 2, 1, "span", 4);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(6, "div", 1)(7, "label", 2);
-      \u0275\u0275text(8, "Password");
-      \u0275\u0275elementEnd();
-      \u0275\u0275element(9, "input", 5);
-      \u0275\u0275conditionalCreate(10, LoginPage_Conditional_10_Template, 2, 1, "span", 4);
-      \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(11, LoginPage_Conditional_11_Template, 2, 1, "div", 6);
-      \u0275\u0275elementStart(12, "button", 7);
-      \u0275\u0275text(13, " Ingresar ");
+      \u0275\u0275elementStart(18, "fieldset", 15)(19, "div", 16)(20, "label", 17)(21, "span", 18);
+      \u0275\u0275text(22, "Email");
       \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(23, "label", 19);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275elementStart(24, "svg", 20);
+      \u0275\u0275element(25, "path", 21)(26, "path", 22);
+      \u0275\u0275elementEnd();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275element(27, "input", 23);
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(28, LoginPage_Conditional_28_Template, 4, 1, "span", 24);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(29, "div", 16)(30, "label", 17)(31, "span", 18);
+      \u0275\u0275text(32, "Password");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(33, "label", 19);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275elementStart(34, "svg", 20);
+      \u0275\u0275element(35, "path", 25);
+      \u0275\u0275elementEnd();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275element(36, "input", 26);
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(37, LoginPage_Conditional_37_Template, 4, 1, "span", 24);
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(38, LoginPage_Conditional_38_Template, 5, 1, "div", 27);
+      \u0275\u0275elementStart(39, "button", 28);
+      \u0275\u0275conditionalCreate(40, LoginPage_Conditional_40_Template, 3, 0)(41, LoginPage_Conditional_41_Template, 1, 0);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(42, "div", 29);
+      \u0275\u0275text(43, "O");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(44, "div", 30)(45, "span", 31);
+      \u0275\u0275text(46, " Pr\xF3ximamente ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(47, "button", 32);
+      \u0275\u0275text(48, " Crear cuenta nueva ");
+      \u0275\u0275elementEnd()()()()()()()();
     }
     if (rf & 2) {
+      let tmp_1_0;
+      \u0275\u0275advance(17);
       \u0275\u0275property("formGroup", ctx.myForm);
-      \u0275\u0275advance(5);
-      \u0275\u0275conditional(ctx.formUtils.isValidField(ctx.myForm, "email") ? 5 : -1);
-      \u0275\u0275advance(5);
-      \u0275\u0275conditional(ctx.formUtils.isValidField(ctx.myForm, "password") ? 10 : -1);
+      \u0275\u0275advance(10);
+      \u0275\u0275classProp("text-error", !ctx.formUtils.isValidField(ctx.myForm, "email") && ((tmp_1_0 = ctx.myForm.get("email")) == null ? null : tmp_1_0.touched));
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.errorMessage ? 11 : -1);
+      \u0275\u0275conditional(ctx.formUtils.isValidField(ctx.myForm, "email") ? 28 : -1);
+      \u0275\u0275advance(9);
+      \u0275\u0275conditional(ctx.formUtils.isValidField(ctx.myForm, "password") ? 37 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.errorMessage ? 38 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275property("disabled", ctx.isLoading());
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.isLoading() ? 40 : 41);
     }
   }, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName], encapsulation: 2, changeDetection: 0 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(LoginPage, [{
     type: Component,
-    args: [{ selector: "app-login-page", standalone: true, imports: [ReactiveFormsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: `<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="p-4 rounded-4 shadow-lg bg-light">
+    args: [{ selector: "app-login-page", standalone: true, imports: [ReactiveFormsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class="hero min-h-screen bg-gradient-to-br  to-slate-900   font-sans">
+  
+  <svg class="absolute -left-20 -bottom-20 w-[500px] h-[500px] text-white opacity-5 animate-[spin_60s_linear_infinite]" fill="currentColor" viewBox="0 0 24 24">
+  </svg>
 
-  <div class="mb-4">
-    <label class="form-label fw-semibold text-primary">Email</label>
-    <input 
-      type="email"
-      formControlName="email" 
-      class="form-control border-primary shadow-sm" 
-      placeholder="example@mail.com">
+  <div class="hero-content flex-col lg:flex-row-reverse w-full max-w-5xl justify-between gap-10 z-10">
+    
+    <div class="text-center lg:text-left lg:w-1/2 relative group">
+      
+      <h1 class="text-5xl lg:text-7xl font-black text-white drop-shadow-lg tracking-tight mb-2">
+        \xA1Hola,Entrenador!
+      </h1>
+      <p class="py-6 text-lg text-blue-100/80 font-medium max-w-md mx-auto lg:mx-0">
+        Tu viaje comienza aqu\xED. Accede para gestionar tu equipo, ver estad\xEDsticas y completar la Pok\xE9dex.
+      </p>
 
-    @if(formUtils.isValidField(myForm, 'email')) {
-      <span class="form-text text-danger fw-semibold">
-        {{ formUtils.getFieldError(myForm, 'email') }}
-      </span>
-    }
-  </div>
-
-  <div class="mb-4">
-    <label class="form-label fw-semibold text-primary">Password</label>
-    <input 
-      type="password"
-      formControlName="password" 
-      class="form-control border-primary shadow-sm" 
-      placeholder="M\xEDnimo 6 caracteres">
-
-    @if(formUtils.isValidField(myForm, 'password')) {
-      <span class="form-text text-danger fw-semibold">
-        {{ formUtils.getFieldError(myForm, 'password') }}
-      </span>
-    }
-  </div>
-
-  @if(errorMessage) {
-    <div class="alert alert-error mb-3">
-      {{ errorMessage }}
+      <div class="flex justify-center lg:justify-start">
+        <div class="relative w-64 h-64 lg:w-80 lg:h-80 transition-transform duration-700 hover:scale-105 hover:-rotate-2">
+          <div class="absolute inset-0 bg-blue-500/30 blur-3xl rounded-full animate-pulse"></div>
+          <img 
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" 
+            alt="Pokemon Login Mascot" 
+            class="w-full h-full object-contain drop-shadow-2xl relative z-10"
+          />
+        </div>
+      </div>
     </div>
-  }
 
-  <button class="btn btn-primary w-100 py-2 fw-bold rounded-pill shadow-sm" type="submit">
-    Ingresar
-  </button>
+    <div class="card w-full max-w-sm shadow-2xl bg-white/10 backdrop-blur-md border border-white/20 relative overflow-hidden">
+      
+      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r " ></div>
 
-</form>
-` }]
+      <div class="card-body">
+        <h2 class="text-2xl font-bold text-white text-center mb-4">Acceso Pok\xE9dex</h2>
+
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <fieldset class="fieldset gap-5">
+            
+            <div class="w-full">
+              <label class="label pb-1">
+                <span class="label-text font-semibold text-blue-100">Email</span>
+              </label>
+              
+              <label class="input input-bordered flex items-center gap-2 bg-white/90 focus-within:bg-white text-gray-800 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" /><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" /></svg>
+                
+                <input 
+                  type="email" 
+                  class="grow placeholder:text-gray-400" 
+                  [class.text-error]="!formUtils.isValidField(myForm, 'email') && myForm.get('email')?.touched"
+                  placeholder="entrenador@ups.edu.ec" 
+                  formControlName="email"
+                />
+              </label>
+
+              @if (formUtils.isValidField(myForm, 'email')) {
+                <span class="text-red-300 text-xs mt-1 font-bold flex items-center gap-1 animate-pulse">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                  {{ formUtils.getFieldError(myForm, 'email') }}
+                </span>
+              }
+            </div>
+
+            <div class="w-full">
+              <label class="label pb-1">
+                <span class="label-text font-semibold text-blue-100">Password</span>
+              </label>
+              
+              <label class="input input-bordered flex items-center gap-2 bg-white/90 focus-within:bg-white text-gray-800 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z" clip-rule="evenodd" /></svg>
+                
+                <input 
+                  type="password" 
+                  class="grow placeholder:text-gray-400" 
+                  placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" 
+                  formControlName="password"
+                />
+              </label>
+
+              @if (formUtils.isValidField(myForm, 'password')) {
+                <span class="text-red-300 text-xs mt-1 font-bold flex items-center gap-1 animate-pulse">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                  {{ formUtils.getFieldError(myForm, 'password') }}
+                </span>
+              }
+            </div>
+
+            @if(errorMessage) {
+              <div role="alert" class="alert alert-error bg-red-500/90 border-none text-white mt-2 p-2 text-sm shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold">{{ errorMessage }}</span>
+              </div>
+            }
+
+            <button 
+              class="btn btn-primary bg-gradient-to-r border-none text-black font-bold hover:scale-105 hover:from-yellow-300 hover:to-orange-400 mt-4 w-full shadow-lg transition-transform" 
+              type="submit"
+              [disabled]="isLoading()"> 
+              
+              @if(isLoading()) {
+                <span class="loading loading-spinner loading-sm"></span>
+                <span>Verificando...</span>
+              } @else {
+                INGRESAR
+              }
+            </button>
+
+            <div class="divider before:bg-white/20 after:bg-white/20 text-xs text-blue-200 my-2">O</div>
+
+            <div class="indicator w-full group">
+              <span class="indicator-item badge badge-secondary text-[10px] font-bold shadow-md">
+                Pr\xF3ximamente
+              </span>
+              <button type="button" class="btn btn-outline border-white/40 text-white hover:bg-white hover:text-blue-900 w-full hover:border-white">
+                Crear cuenta nueva
+              </button>
+            </div>
+
+          </fieldset>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>` }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoginPage, { className: "LoginPage", filePath: "src/app/features/login-page/login-page.ts", lineNumber: 13 });
-})();
-
-// src/environments/environment.ts
-var environment = {
-  production: false,
-  apiUrl: "https://pokeapi.co/api/v2"
-};
-
-// src/app/services/pokemon.service.ts
-var PokemonService = class _PokemonService {
-  http = inject2(HttpClient);
-  API_URL = environment.apiUrl || "https://pokeapi.co/api/v2";
-  // Lista paginada por offset & limit
-  getPokemonList(offset = 0, limit = 20) {
-    const url = `${this.API_URL}/pokemon?offset=${offset}&limit=${limit}`;
-    return this.http.get(url).pipe(map((res) => res), catchError((err) => {
-      console.error("Error al obtener lista de Pok\xE9mon", err);
-      return of({ count: 0, next: null, previous: null, results: [] });
-    }));
-  }
-  // Detalle por id o nombre
-  getPokemonById(idOrName) {
-    const url = `${this.API_URL}/pokemon/${idOrName}`;
-    return this.http.get(url).pipe(map((res) => res), catchError((err) => {
-      console.error("Error al obtener detalle del Pok\xE9mon", err);
-      return of(null);
-    }));
-  }
-  static \u0275fac = function PokemonService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PokemonService)();
-  };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _PokemonService, factory: _PokemonService.\u0275fac, providedIn: "root" });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PokemonService, [{
-    type: Injectable,
-    args: [{ providedIn: "root" }]
-  }], null, null);
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoginPage, { className: "LoginPage", filePath: "src/app/features/login-page/login-page.ts", lineNumber: 14 });
 })();
 
 // node_modules/.pnpm/@angular+core@20.3.15_@angular+compiler@20.3.15_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
@@ -46751,48 +46879,55 @@ var HeroPokemon = class _HeroPokemon {
   static \u0275fac = function HeroPokemon_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HeroPokemon)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeroPokemon, selectors: [["app-hero-pokemon"]], inputs: { pokemonCount: [1, "pokemonCount"], totalPages: [1, "totalPages"] }, decls: 28, vars: 2, consts: [["role", "banner", 1, "hero", "bg-linear-to-r", "from-yellow-400", "via-yellow-500", "to-orange-400", "text-base-content"], [1, "hero-content", "text-center", "py-12"], [1, "max-w-md"], [1, "text-5xl", "font-bold", "text-black", "drop-shadow-md"], [1, "py-6", "text-lg", "text-gray-800", "font-medium"], [1, "stats", "stats-horizontal", "shadow-lg", "bg-white/90"], [1, "stat"], [1, "stat-figure", "text-primary"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "inline-block", "w-8", "h-8", "stroke-current"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"], [1, "stat-title", "text-gray-700"], [1, "stat-value", "text-primary"], [1, "stat-desc", "text-gray-600"], [1, "stat-figure", "text-secondary"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"], [1, "stat-value", "text-secondary"]], template: function HeroPokemon_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeroPokemon, selectors: [["app-hero-pokemon"]], inputs: { pokemonCount: [1, "pokemonCount"], totalPages: [1, "totalPages"] }, decls: 32, vars: 2, consts: [[1, "hero", "min-h-[500px]", "relative", "overflow-hidden", "bg-gradient-to-br", "from-yellow-400", "via-orange-400", "to-red-500", "text-white", "font-sans"], ["fill", "currentColor", "viewBox", "0 0 24 24", 1, "absolute", "-right-20", "-bottom-40", "w-96", "h-96", "text-white", "opacity-10", "rotate-12", "pointer-events-none"], [1, "hero-content", "flex-col", "lg:flex-row-reverse", "gap-8", "lg:gap-16", "z-10", "w-full", "max-w-6xl", "p-6"], [1, "relative", "group"], [1, "absolute", "inset-0", "bg-yellow-300", "blur-3xl", "opacity-30", "rounded-full", "animate-pulse"], ["src", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png", "alt", "Pikachu Welcome", 1, "max-w-xs", "md:max-w-sm", "rounded-lg", "drop-shadow-2xl", "transform", "transition-transform", "duration-700", "hover:scale-110", "hover:-rotate-3", "animate-bounce-slow"], [1, "text-center", "lg:text-left", "flex-1"], [1, "text-6xl", "md:text-7xl", "font-black", "drop-shadow-lg", "tracking-tighter", "mb-2"], [1, "py-6", "text-lg", "md:text-xl", "font-medium", "opacity-90", "max-w-lg", "mx-auto", "lg:mx-0", "leading-relaxed"], [1, "stats", "stats-horizontal", "shadow-2xl", "bg-white/10", "backdrop-blur-lg", "border", "border-white/20", "text-white", "mt-4", "overflow-visible"], [1, "stat", "place-items-center", "lg:place-items-start", "px-6", "py-4", "transition-colors", "hover:bg-white/10"], [1, "stat-figure", "text-yellow-300"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "inline-block", "w-8", "h-8", "stroke-current"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"], [1, "stat-title", "text-yellow-100", "font-bold", "opacity-80"], [1, "stat-value", "text-4xl", "drop-shadow-sm"], [1, "stat-desc", "text-white/70", "font-medium"], [1, "stat", "place-items-center", "lg:place-items-start", "px-6", "py-4", "border-l", "border-white/20", "transition-colors", "hover:bg-white/10"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"]], template: function HeroPokemon_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275domElementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h1", 3);
-      \u0275\u0275text(4, "Pok\xE9mon");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(5, "p", 4);
-      \u0275\u0275text(6, " Explora el universo Pok\xE9mon: descubre especies, habilidades y estad\xEDsticas ");
-      \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(7, "div", 5)(8, "div", 6)(9, "div", 7);
+      \u0275\u0275domElementStart(0, "div", 0);
       \u0275\u0275namespaceSVG();
-      \u0275\u0275domElementStart(10, "svg", 8);
-      \u0275\u0275domElement(11, "path", 9);
+      \u0275\u0275domElement(1, "svg", 1);
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275domElementStart(2, "div", 2)(3, "div", 3);
+      \u0275\u0275domElement(4, "div", 4)(5, "img", 5);
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(6, "div", 6)(7, "h1", 7);
+      \u0275\u0275text(8, " Mundo Pok\xE9mon ");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(9, "p", 8);
+      \u0275\u0275text(10, " Explora la enciclopedia definitiva. Descubre especies, analiza estad\xEDsticas y convi\xE9rtete en el mejor maestro. ");
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(11, "div", 9)(12, "div", 10)(13, "div", 11);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElementStart(14, "svg", 12);
+      \u0275\u0275domElement(15, "path", 13);
       \u0275\u0275domElementEnd()();
       \u0275\u0275namespaceHTML();
-      \u0275\u0275domElementStart(12, "div", 10);
-      \u0275\u0275text(13, "Pok\xE9mon");
+      \u0275\u0275domElementStart(16, "div", 14);
+      \u0275\u0275text(17, "Total Pok\xE9mon");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(14, "div", 11);
-      \u0275\u0275text(15);
+      \u0275\u0275domElementStart(18, "div", 15);
+      \u0275\u0275text(19);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(16, "div", 12);
-      \u0275\u0275text(17, "Total en Pok\xE9dex");
+      \u0275\u0275domElementStart(20, "div", 16);
+      \u0275\u0275text(21, "Registrados");
       \u0275\u0275domElementEnd()();
-      \u0275\u0275domElementStart(18, "div", 6)(19, "div", 13);
+      \u0275\u0275domElementStart(22, "div", 17)(23, "div", 11);
       \u0275\u0275namespaceSVG();
-      \u0275\u0275domElementStart(20, "svg", 8);
-      \u0275\u0275domElement(21, "path", 14);
+      \u0275\u0275domElementStart(24, "svg", 12);
+      \u0275\u0275domElement(25, "path", 18);
       \u0275\u0275domElementEnd()();
       \u0275\u0275namespaceHTML();
-      \u0275\u0275domElementStart(22, "div", 10);
-      \u0275\u0275text(23, "P\xE1ginas");
+      \u0275\u0275domElementStart(26, "div", 14);
+      \u0275\u0275text(27, "P\xE1ginas");
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(24, "div", 15);
-      \u0275\u0275text(25);
+      \u0275\u0275domElementStart(28, "div", 15);
+      \u0275\u0275text(29);
       \u0275\u0275domElementEnd();
-      \u0275\u0275domElementStart(26, "div", 12);
-      \u0275\u0275text(27, "Total disponibles");
+      \u0275\u0275domElementStart(30, "div", 16);
+      \u0275\u0275text(31, "Disponibles");
       \u0275\u0275domElementEnd()()()()()();
     }
     if (rf & 2) {
-      \u0275\u0275advance(15);
-      \u0275\u0275textInterpolate1(" ", ctx.pokemonCount(), " ");
+      \u0275\u0275advance(19);
+      \u0275\u0275textInterpolate(ctx.pokemonCount());
       \u0275\u0275advance(10);
       \u0275\u0275textInterpolate(ctx.totalPages());
     }
@@ -46801,91 +46936,213 @@ var HeroPokemon = class _HeroPokemon {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeroPokemon, [{
     type: Component,
-    args: [{ selector: "app-hero-pokemon", standalone: true, imports: [], changeDetection: ChangeDetectionStrategy.OnPush, template: '<div\n  class="hero bg-linear-to-r from-yellow-400 via-yellow-500 to-orange-400 text-base-content"\n  role="banner"\n>\n  <div class="hero-content text-center py-12">\n    <div class="max-w-md">\n      <h1 class="text-5xl font-bold text-black drop-shadow-md">Pok\xE9mon</h1>\n      <p class="py-6 text-lg text-gray-800 font-medium">\n        Explora el universo Pok\xE9mon: descubre especies, habilidades y estad\xEDsticas\n      </p>\n\n      <!-- Stats -->\n      <div class="stats stats-horizontal shadow-lg bg-white/90">\n        <!-- Total de Pok\xE9mon -->\n        <div class="stat">\n          <div class="stat-figure text-primary">\n            <svg\n              xmlns="http://www.w3.org/2000/svg"\n              fill="none"\n              viewBox="0 0 24 24"\n              class="inline-block w-8 h-8 stroke-current"\n            >\n              <path\n                stroke-linecap="round"\n                stroke-linejoin="round"\n                stroke-width="2"\n                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"\n              ></path>\n            </svg>\n          </div>\n          <div class="stat-title text-gray-700">Pok\xE9mon</div>\n          <div class="stat-value text-primary">\n            {{ pokemonCount() }}\n          </div>\n          <div class="stat-desc text-gray-600">Total en Pok\xE9dex</div>\n        </div>\n\n        <!-- Total de p\xE1ginas -->\n        <div class="stat">\n          <div class="stat-figure text-secondary">\n            <svg\n              xmlns="http://www.w3.org/2000/svg"\n              fill="none"\n              viewBox="0 0 24 24"\n              class="inline-block w-8 h-8 stroke-current"\n            >\n              <path\n                stroke-linecap="round"\n                stroke-linejoin="round"\n                stroke-width="2"\n                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"\n              ></path>\n            </svg>\n          </div>\n          <div class="stat-title text-gray-700">P\xE1ginas</div>\n          <div class="stat-value text-secondary">{{ totalPages() }}</div>\n          <div class="stat-desc text-gray-600">Total disponibles</div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n' }]
+    args: [{ selector: "app-hero-pokemon", standalone: true, imports: [], changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="hero min-h-[500px] relative overflow-hidden bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white font-sans">\n  <svg class="absolute -right-20 -bottom-40 w-96 h-96 text-white opacity-10 rotate-12 pointer-events-none" fill="currentColor" viewBox="0 0 24 24">\n  </svg>\n\n  <div class="hero-content flex-col lg:flex-row-reverse gap-8 lg:gap-16 z-10 w-full max-w-6xl p-6">\n    \n    <div class="relative group">\n      <div class="absolute inset-0 bg-yellow-300 blur-3xl opacity-30 rounded-full animate-pulse"></div>\n      \n      <img \n        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" \n        class="max-w-xs md:max-w-sm rounded-lg drop-shadow-2xl transform transition-transform duration-700 hover:scale-110 hover:-rotate-3 animate-bounce-slow" \n        alt="Pikachu Welcome" \n      />\n    </div>\n\n    <div class="text-center lg:text-left flex-1">\n      \n\n\n      <h1 class="text-6xl md:text-7xl font-black drop-shadow-lg tracking-tighter mb-2">\n        Mundo Pok\xE9mon\n      </h1>\n      \n      <p class="py-6 text-lg md:text-xl font-medium opacity-90 max-w-lg mx-auto lg:mx-0 leading-relaxed">\n        Explora la enciclopedia definitiva. Descubre especies, analiza estad\xEDsticas y convi\xE9rtete en el mejor maestro.\n      </p>\n\n      <div class="stats stats-horizontal shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white mt-4 overflow-visible">\n        \n        <div class="stat place-items-center lg:place-items-start px-6 py-4 transition-colors hover:bg-white/10">\n          <div class="stat-figure text-yellow-300">\n            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>\n          </div>\n          <div class="stat-title text-yellow-100 font-bold opacity-80">Total Pok\xE9mon</div>\n          <div class="stat-value text-4xl drop-shadow-sm">{{ pokemonCount() }}</div>\n          <div class="stat-desc text-white/70 font-medium">Registrados</div>\n        </div>\n\n        <div class="stat place-items-center lg:place-items-start px-6 py-4 border-l border-white/20 transition-colors hover:bg-white/10">\n          <div class="stat-figure text-yellow-300">\n            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>\n          </div>\n          <div class="stat-title text-yellow-100 font-bold opacity-80">P\xE1ginas</div>\n          <div class="stat-value text-4xl drop-shadow-sm">{{ totalPages() }}</div>\n          <div class="stat-desc text-white/70 font-medium">Disponibles</div>\n        </div>\n\n      </div>\n\n    </div>\n  </div>\n</div>' }]
   }], null, { pokemonCount: [{ type: Input, args: [{ isSignal: true, alias: "pokemonCount", required: true }] }], totalPages: [{ type: Input, args: [{ isSignal: true, alias: "totalPages", required: true }] }] });
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeroPokemon, { className: "HeroPokemon", filePath: "src/app/features/componentes/hero-pokemon/hero-pokemon.ts", lineNumber: 10 });
 })();
 
+// src/environments/environment.ts
+var environment = {
+  production: false,
+  apiUrl: "https://pokeapi.co/api/v2"
+};
+
+// src/app/services/pokemon.service.ts
+var PokemonService = class _PokemonService {
+  http = inject2(HttpClient);
+  API_URL = environment.apiUrl || "https://pokeapi.co/api/v2";
+  // Lista paginada por offset & limit
+  getPokemonList(offset = 0, limit = 20) {
+    const url = `${this.API_URL}/pokemon?offset=${offset}&limit=${limit}`;
+    return this.http.get(url).pipe(map((res) => res), catchError((err) => {
+      console.error("Error al obtener lista de Pok\xE9mon", err);
+      return of({ count: 0, next: null, previous: null, results: [] });
+    }));
+  }
+  // Detalle por id o nombre
+  getPokemonById(idOrName) {
+    const url = `${this.API_URL}/pokemon/${idOrName}`;
+    return this.http.get(url).pipe(map((res) => res), catchError((err) => {
+      console.error("Error al obtener detalle del Pok\xE9mon", err);
+      return of(null);
+    }));
+  }
+  static \u0275fac = function PokemonService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _PokemonService)();
+  };
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _PokemonService, factory: _PokemonService.\u0275fac, providedIn: "root" });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PokemonService, [{
+    type: Injectable,
+    args: [{ providedIn: "root" }]
+  }], null, null);
+})();
+
+// src/app/features/componentes/header-page/header-page.ts
+var _c0 = () => ({ exact: true });
+var HeaderPage = class _HeaderPage {
+  static \u0275fac = function HeaderPage_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HeaderPage)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderPage, selectors: [["app-header-page"]], decls: 31, vars: 4, consts: [[1, "drawer"], ["id", "my-drawer-2", "type", "checkbox", 1, "drawer-toggle"], [1, "drawer-content", "flex", "flex-col"], [1, "navbar", "bg-base-300", "w-full"], [1, "flex-none", "lg:hidden"], ["for", "my-drawer-2", "aria-label", "open sidebar", 1, "btn", "btn-square", "btn-ghost"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "inline-block", "h-6", "w-6", "stroke-current"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M4 6h16M4 12h16M4 18h16"], [1, "mx-2", "flex-1", "px-2", "font-bold"], [1, "hidden", "flex-none", "lg:block"], [1, "menu", "menu-horizontal"], ["routerLink", "", "routerLinkActive", "bg-primary text-primary-content", 3, "routerLinkActiveOptions"], ["routerLink", "/home", "routerLinkActive", "bg-primary text-primary-content"], [1, "drawer-side", "z-50"], ["for", "my-drawer-2", "aria-label", "close sidebar", 1, "drawer-overlay"], [1, "flex", "flex-col", "min-h-full", "w-80", "bg-base-200", "text-base-content"], [1, "menu", "flex-1", "p-4"], ["routerLink", "/estilos", "routerLinkActive", "bg-primary text-primary-content"], ["routerLink", "/simpsons", "routerLinkActive", "bg-primary text-primary-content"], ["routerLink", "/", "routerLinkActive", "bg-primary text-primary-content", 3, "routerLinkActiveOptions"]], template: function HeaderPage_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "div", 0);
+      \u0275\u0275element(1, "input", 1);
+      \u0275\u0275elementStart(2, "div", 2)(3, "div", 3)(4, "div", 4)(5, "label", 5);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275elementStart(6, "svg", 6);
+      \u0275\u0275element(7, "path", 7);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275elementStart(8, "div", 8);
+      \u0275\u0275text(9, "Pokemon (\uFF89>\u03C9<)\uFF89 \u{1F525}\n");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(10, "div", 9)(11, "ul", 10)(12, "li")(13, "a", 11);
+      \u0275\u0275text(14, "volver al login ");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(15, "li")(16, "a", 12);
+      \u0275\u0275text(17, "Home");
+      \u0275\u0275elementEnd()()()()()();
+      \u0275\u0275elementStart(18, "div", 13);
+      \u0275\u0275element(19, "label", 14);
+      \u0275\u0275elementStart(20, "aside", 15)(21, "ul", 16)(22, "li")(23, "a", 17);
+      \u0275\u0275text(24, "Estilos");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(25, "li")(26, "a", 18);
+      \u0275\u0275text(27, "Simpsons");
+      \u0275\u0275elementEnd()();
+      \u0275\u0275elementStart(28, "li")(29, "a", 19);
+      \u0275\u0275text(30, "Home");
+      \u0275\u0275elementEnd()()()()()();
+    }
+    if (rf & 2) {
+      \u0275\u0275advance(13);
+      \u0275\u0275property("routerLinkActiveOptions", \u0275\u0275pureFunction0(2, _c0));
+      \u0275\u0275advance(16);
+      \u0275\u0275property("routerLinkActiveOptions", \u0275\u0275pureFunction0(3, _c0));
+    }
+  }, dependencies: [RouterLink, RouterLinkActive], encapsulation: 2, changeDetection: 0 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeaderPage, [{
+    type: Component,
+    args: [{ selector: "app-header-page", standalone: true, imports: [RouterLink, RouterLinkActive], changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="drawer">\n  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />\n  \n  <div class="drawer-content flex flex-col">\n    <div class="navbar bg-base-300 w-full">\n      <div class="flex-none lg:hidden">\n        <label for="my-drawer-2" aria-label="open sidebar" class="btn btn-square btn-ghost">\n          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">\n            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>\n          </svg>\n        </label>\n      </div>\n      <div class="mx-2 flex-1 px-2 font-bold">Pokemon (\uFF89>\u03C9<)\uFF89 \u{1F525}\n</div>\n      \n      <div class="hidden flex-none lg:block">\n        <ul class="menu menu-horizontal">\n\n          <li>\n            <a routerLink="" routerLinkActive="bg-primary text-primary-content" [routerLinkActiveOptions]="{ exact: true }">volver al login  </a>\n          </li>\n          <li>  \n            <a routerLink="/home" routerLinkActive="bg-primary text-primary-content" >Home</a>\n          </li>\n        </ul>\n\n      </div>\n    </div>\n  </div>\n  \n  <div class="drawer-side z-50">\n    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>\n    \n    <aside class="flex flex-col min-h-full w-80 bg-base-200 text-base-content">\n        <ul class="menu flex-1 p-4">\n          <li>\n            <a routerLink="/estilos" routerLinkActive="bg-primary text-primary-content">Estilos</a>\n          </li>\n          <li>\n            <a routerLink="/simpsons" routerLinkActive="bg-primary text-primary-content">Simpsons</a>\n          </li>\n          <li>\n            <a routerLink="/" routerLinkActive="bg-primary text-primary-content" [routerLinkActiveOptions]="{ exact: true }">Home</a>\n          </li>\n        </ul>\n\n    </aside>\n  </div>\n</div>' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeaderPage, { className: "HeaderPage", filePath: "src/app/features/componentes/header-page/header-page.ts", lineNumber: 12 });
+})();
+
 // src/app/features/home-page/home-page.ts
-var _c0 = () => [];
+var _c02 = () => [];
 var _c1 = (a0) => ["/pokemon", a0];
 var _forTrack0 = ($index, $item) => $item.name;
 function HomePage_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 3);
     \u0275\u0275element(1, "span", 5);
-    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(2, "span", 6);
+    \u0275\u0275text(3, "Buscando Pok\xE9mon...");
+    \u0275\u0275elementEnd()();
   }
 }
 function HomePage_Conditional_4_For_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "li")(1, "article", 12)(2, "h3", 13);
-    \u0275\u0275text(3);
+    \u0275\u0275elementStart(0, "li")(1, "article", 15);
+    \u0275\u0275element(2, "div", 16);
+    \u0275\u0275elementStart(3, "div", 17)(4, "div", 18)(5, "span", 19);
+    \u0275\u0275text(6);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "div", 14)(5, "a", 15);
-    \u0275\u0275text(6, "Ver detalles");
+    \u0275\u0275elementStart(7, "h3", 20);
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "a", 21);
+    \u0275\u0275text(10, " Ver Ficha ");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(11, "figure", 22);
+    \u0275\u0275element(12, "img", 23);
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
     const p_r2 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext(2);
-    \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate(p_r2.name);
+    \u0275\u0275advance(6);
+    \u0275\u0275textInterpolate1(" #", ctx_r2.pokemonId(p_r2.url), " ");
     \u0275\u0275advance(2);
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(2, _c1, ctx_r2.pokemonId(p_r2.url)));
+    \u0275\u0275textInterpolate1(" ", p_r2.name, " ");
+    \u0275\u0275advance();
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(5, _c1, ctx_r2.pokemonId(p_r2.url)));
+    \u0275\u0275advance(3);
+    \u0275\u0275property("src", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + ctx_r2.pokemonId(p_r2.url) + ".png", \u0275\u0275sanitizeUrl)("alt", p_r2.name);
   }
 }
 function HomePage_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "section", 6)(1, "ul", 7);
-    \u0275\u0275repeaterCreate(2, HomePage_Conditional_4_For_3_Template, 7, 4, "li", null, _forTrack0);
+    \u0275\u0275elementStart(0, "section", 7)(1, "ul", 8);
+    \u0275\u0275repeaterCreate(2, HomePage_Conditional_4_For_3_Template, 13, 7, "li", null, _forTrack0);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "footer", 8)(5, "div")(6, "button", 9);
-    \u0275\u0275listener("click", function HomePage_Conditional_4_Template_button_click_6_listener() {
+    \u0275\u0275elementStart(4, "footer", 9)(5, "div", 10);
+    \u0275\u0275text(6, " P\xE1gina ");
+    \u0275\u0275elementStart(7, "span", 11);
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "span", 12);
+    \u0275\u0275text(10, "\u2022");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(11);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "div", 13)(13, "button", 14);
+    \u0275\u0275listener("click", function HomePage_Conditional_4_Template_button_click_13_listener() {
       \u0275\u0275restoreView(_r1);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.prev());
     });
-    \u0275\u0275text(7, "Anterior");
+    \u0275\u0275text(14, " \xAB Anterior ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "button", 10);
-    \u0275\u0275listener("click", function HomePage_Conditional_4_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(15, "button", 14);
+    \u0275\u0275listener("click", function HomePage_Conditional_4_Template_button_click_15_listener() {
       \u0275\u0275restoreView(_r1);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.next());
     });
-    \u0275\u0275text(9, "Siguiente");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "div", 11);
-    \u0275\u0275text(11);
-    \u0275\u0275elementEnd()();
+    \u0275\u0275text(16, " Siguiente \xBB ");
+    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    let tmp_2_0;
-    let tmp_3_0;
+    let tmp_4_0;
+    let tmp_5_0;
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(2);
-    \u0275\u0275repeater(ctx_r2.pokemonResource.value().results ?? \u0275\u0275pureFunction0(4, _c0));
-    \u0275\u0275advance(4);
-    \u0275\u0275property("disabled", ctx_r2.pokemonResource.loading() || !((tmp_2_0 = ctx_r2.pokemonResource.value()) == null ? null : tmp_2_0.previous));
-    \u0275\u0275advance(2);
-    \u0275\u0275property("disabled", ctx_r2.pokemonResource.loading() || !((tmp_3_0 = ctx_r2.pokemonResource.value()) == null ? null : tmp_3_0.next));
+    \u0275\u0275repeater(ctx_r2.pokemonResource.value().results ?? \u0275\u0275pureFunction0(4, _c02));
+    \u0275\u0275advance(6);
+    \u0275\u0275textInterpolate(ctx_r2.paginationService.currentPage());
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate2("P\xE1gina ", ctx_r2.paginationService.currentPage(), " \u2014 Mostrando ", ctx_r2.pokemonResource.value().results.length, " items");
+    \u0275\u0275textInterpolate1(" Mostrando ", ctx_r2.pokemonResource.value().results.length, " Pok\xE9mon ");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("disabled", ctx_r2.pokemonResource.loading() || !((tmp_4_0 = ctx_r2.pokemonResource.value()) == null ? null : tmp_4_0.previous));
+    \u0275\u0275advance(2);
+    \u0275\u0275property("disabled", ctx_r2.pokemonResource.loading() || !((tmp_5_0 = ctx_r2.pokemonResource.value()) == null ? null : tmp_5_0.next));
   }
 }
 function HomePage_Conditional_5_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 4);
-    \u0275\u0275text(1);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(1, "svg", 24);
+    \u0275\u0275element(2, "path", 25);
     \u0275\u0275elementEnd();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(3, "span");
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance();
+    \u0275\u0275advance(4);
     \u0275\u0275textInterpolate1("Error: ", ctx_r2.pokemonResource.error());
   }
 }
@@ -46969,17 +47226,21 @@ var HomePage = class _HomePage {
     const parts = url.split("/").filter(Boolean);
     return parts[parts.length - 1];
   }
+  pokemonImage(url) {
+    const id = url.split("/").filter((x) => x).pop();
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+  }
   static \u0275fac = function HomePage_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HomePage)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HomePage, selectors: [["app-home-page"]], decls: 6, vars: 5, consts: [[1, "container", "mx-auto"], [3, "pokemonCount", "totalPages"], [1, "p-4"], [1, "flex", "justify-center", "items-center", "py-12"], [1, "alert", "alert-error", "mt-4"], [1, "loading", "loading-spinner", "loading-lg"], ["aria-label", "Listado de pokemons"], [1, "grid", "gap-3", "sm:grid-cols-2", "md:grid-cols-3", "lg:grid-cols-4", "list-none", "p-0"], [1, "mt-6", "flex", "items-center", "justify-between"], [1, "btn", "btn-secondary", "mr-2", 3, "click", "disabled"], [1, "btn", "btn-primary", 3, "click", "disabled"], [1, "opacity-70"], [1, "card", "p-4", "mb-2", "rounded-md", "border"], [1, "font-semibold", "text-lg", "capitalize"], [1, "mt-2"], [1, "btn", "btn-sm", "btn-outline", 3, "routerLink"]], template: function HomePage_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HomePage, selectors: [["app-home-page"]], decls: 6, vars: 5, consts: [[1, "container", "mx-auto", "p-4", "lg:p-6", "min-h-screen"], [3, "pokemonCount", "totalPages"], [1, "mt-8"], [1, "flex", "flex-col", "justify-center", "items-center", "py-20", "gap-4"], ["role", "alert", 1, "alert", "alert-error", "mt-8", "shadow-lg"], [1, "loading", "loading-ring", "loading-lg", "scale-150", "text-primary"], [1, "text-sm", "font-bold", "opacity-50", "animate-pulse"], ["aria-label", "Listado de pokemons"], [1, "grid", "gap-6", "grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-3", "xl:grid-cols-4", "list-none", "p-0"], [1, "mt-12", "flex", "flex-col", "md:flex-row", "items-center", "justify-between", "gap-4", "p-4", "bg-base-100", "rounded-xl", "shadow-sm", "border", "border-base-200"], [1, "text-sm", "font-semibold", "opacity-70"], [1, "text-primary"], [1, "mx-1"], [1, "join", "grid", "grid-cols-2", "shadow-sm"], [1, "join-item", "btn", "btn-outline", 3, "click", "disabled"], [1, "card", "bg-base-100", "shadow-lg", "hover:shadow-2xl", "border", "border-base-200", "transition-all", "duration-300", "hover:-translate-y-1", "hover:scale-[1.02]", "group", "overflow-hidden", "h-full"], [1, "absolute", "right-[-20px]", "top-[-20px]", "w-32", "h-32", "bg-primary/10", "rounded-full", "blur-2xl", "group-hover:bg-primary/20", "transition-colors"], [1, "card-body", "p-5", "flex", "flex-row", "items-center", "justify-between"], [1, "flex", "flex-col", "items-start", "gap-2", "z-10"], [1, "badge", "badge-ghost", "text-xs", "font-bold", "opacity-60"], [1, "font-extrabold", "text-xl", "capitalize", "text-base-content", "tracking-tight"], [1, "btn", "btn-sm", "btn-primary", "mt-2", "shadow-md", 3, "routerLink"], [1, "w-24", "h-24", "flex-shrink-0", "relative"], ["loading", "lazy", 1, "w-full", "h-full", "object-contain", "drop-shadow-md", "group-hover:scale-110", "transition-transform", "duration-500", 3, "src", "alt"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "stroke-current", "shrink-0", "h-6", "w-6"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"]], template: function HomePage_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "section", 0);
       \u0275\u0275element(1, "app-hero-pokemon", 1);
       \u0275\u0275elementStart(2, "div", 2);
-      \u0275\u0275conditionalCreate(3, HomePage_Conditional_3_Template, 2, 0, "div", 3);
-      \u0275\u0275conditionalCreate(4, HomePage_Conditional_4_Template, 12, 5);
-      \u0275\u0275conditionalCreate(5, HomePage_Conditional_5_Template, 2, 1, "div", 4);
+      \u0275\u0275conditionalCreate(3, HomePage_Conditional_3_Template, 4, 0, "div", 3);
+      \u0275\u0275conditionalCreate(4, HomePage_Conditional_4_Template, 17, 5);
+      \u0275\u0275conditionalCreate(5, HomePage_Conditional_5_Template, 5, 1, "div", 4);
       \u0275\u0275elementEnd()();
     }
     if (rf & 2) {
@@ -46998,27 +47259,60 @@ var HomePage = class _HomePage {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HomePage, [{
     type: Component,
-    args: [{ selector: "app-home-page", standalone: true, imports: [CommonModule, RouterModule, HeroPokemon], changeDetection: ChangeDetectionStrategy.OnPush, template: `<section class="container mx-auto">
-  <!-- Hero Section -->
-  <app-hero-pokemon [pokemonCount]="pokemonResource.value()?.count ?? 0" [totalPages]="totalPages()"></app-hero-pokemon>
+    args: [{ selector: "app-home-page", standalone: true, imports: [CommonModule, RouterModule, HeroPokemon, HeaderPage], changeDetection: ChangeDetectionStrategy.OnPush, template: `
 
-  <!-- Main Content -->
-  <div class="p-4">
+<section class="container mx-auto p-4 lg:p-6 min-h-screen">
+  
+  <app-hero-pokemon 
+    [pokemonCount]="pokemonResource.value()?.count ?? 0"
+    [totalPages]="totalPages()">
+  </app-hero-pokemon>
+    
+  <div class="mt-8">
+    
     @if(pokemonResource.loading()) {
-      <div class="flex justify-center items-center py-12">
-        <span class="loading loading-spinner loading-lg"></span>
+      <div class="flex flex-col justify-center items-center py-20 gap-4">
+        <span class="loading loading-ring loading-lg scale-150 text-primary"></span>
+        <span class="text-sm font-bold opacity-50 animate-pulse">Buscando Pok\xE9mon...</span>
       </div>
     }
 
     @if(pokemonResource.hasValue()) {
       <section aria-label="Listado de pokemons">
-        <ul class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 list-none p-0">
+        
+        <ul class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 list-none p-0">
+          
           @for(p of pokemonResource.value().results ?? []; track p.name) {
             <li>
-              <article class="card p-4 mb-2 rounded-md border">
-                <h3 class="font-semibold text-lg capitalize">{{ p.name }}</h3>
-                <div class="mt-2">
-                  <a [routerLink]="['/pokemon', pokemonId(p.url)]" class="btn btn-sm btn-outline">Ver detalles</a>
+              <article class="card bg-base-100 shadow-lg hover:shadow-2xl border border-base-200 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] group overflow-hidden h-full">
+                
+                <div class="absolute right-[-20px] top-[-20px] w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors"></div>
+
+                <div class="card-body p-5 flex flex-row items-center justify-between">
+                  
+                  <div class="flex flex-col items-start gap-2 z-10">
+                    <span class="badge badge-ghost text-xs font-bold opacity-60">
+                      #{{ pokemonId(p.url) }}
+                    </span>
+                    
+                    <h3 class="font-extrabold text-xl capitalize text-base-content tracking-tight">
+                      {{ p.name }}
+                    </h3>
+                    
+                    <a [routerLink]="['/pokemon', pokemonId(p.url)]" class="btn btn-sm btn-primary mt-2 shadow-md">
+                      Ver Ficha
+                    </a>
+                  </div>
+
+                  <figure class="w-24 h-24 flex-shrink-0 relative">
+                    <img 
+                      [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemonId(p.url) + '.png'" 
+                      [alt]="p.name"
+                      class="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </figure>
+
                 </div>
               </article>
             </li>
@@ -47026,141 +47320,186 @@ var HomePage = class _HomePage {
         </ul>
       </section>
 
-      <footer class="mt-6 flex items-center justify-between">
-        <div>
-          <button class="btn btn-secondary mr-2" (click)="prev()" [disabled]="pokemonResource.loading() || !pokemonResource.value()?.previous">Anterior</button>
-          <button class="btn btn-primary" (click)="next()" [disabled]="pokemonResource.loading() || !pokemonResource.value()?.next">Siguiente</button>
+      <footer class="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-base-100 rounded-xl shadow-sm border border-base-200">
+        
+        <div class="text-sm font-semibold opacity-70">
+          P\xE1gina <span class="text-primary">{{ paginationService.currentPage() }}</span> 
+          <span class="mx-1">\u2022</span> 
+          Mostrando {{ pokemonResource.value().results.length }} Pok\xE9mon
         </div>
 
-        <div class="opacity-70">P\xE1gina {{ paginationService.currentPage() }} \u2014 Mostrando {{ pokemonResource.value().results.length }} items</div>
+        <div class="join grid grid-cols-2 shadow-sm">
+          <button 
+            class="join-item btn btn-outline" 
+            (click)="prev()" 
+            [disabled]="pokemonResource.loading() || !pokemonResource.value()?.previous">
+            \xAB Anterior
+          </button>
+          <button 
+            class="join-item btn btn-outline" 
+            (click)="next()" 
+            [disabled]="pokemonResource.loading() || !pokemonResource.value()?.next">
+            Siguiente \xBB
+          </button>
+        </div>
+
       </footer>
     }
 
     @if(pokemonResource.error()) {
-      <div class="alert alert-error mt-4">Error: {{ pokemonResource.error() }}</div>
+      <div role="alert" class="alert alert-error mt-8 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>Error: {{ pokemonResource.error() }}</span>
+      </div>
     }
   </div>
-</section>
-` }]
+</section>` }]
   }], () => [], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomePage, { className: "HomePage", filePath: "src/app/features/home-page/home-page.ts", lineNumber: 69 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomePage, { className: "HomePage", filePath: "src/app/features/home-page/home-page.ts", lineNumber: 72 });
 })();
 
 // src/app/features/pokemon-detail-page/pokemon-detail-page.ts
-var _c02 = () => [];
+var _c03 = () => [];
 var _forTrack02 = ($index, $item) => $item.slot;
 var _forTrack1 = ($index, $item) => $item.stat.name;
 var _forTrack2 = ($index, $item) => $item.ability.name;
-function PokemonDetailPage_Conditional_3_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_5_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 2);
-    \u0275\u0275text(1, "Cargando detalle...");
-    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(0, "div", 4);
+    \u0275\u0275element(1, "span", 6);
+    \u0275\u0275elementStart(2, "span", 7);
+    \u0275\u0275text(3, "ANALIZANDO DATOS...");
+    \u0275\u0275elementEnd()();
   }
 }
-function PokemonDetailPage_Conditional_4_img_3_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_6_For_13_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "img", 15);
-  }
-  if (rf & 2) {
-    let tmp_2_0;
-    let tmp_3_0;
-    const ctx_r0 = \u0275\u0275nextContext(2);
-    \u0275\u0275property("src", \u0275\u0275interpolate((tmp_2_0 = ctx_r0.pokemon()) == null ? null : tmp_2_0.sprites == null ? null : tmp_2_0.sprites.front_default), \u0275\u0275sanitizeUrl)("alt", \u0275\u0275interpolate((tmp_3_0 = ctx_r0.pokemon()) == null ? null : tmp_3_0.name));
-  }
-}
-function PokemonDetailPage_Conditional_4_For_29_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 12);
+    \u0275\u0275elementStart(0, "span", 17);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const type_r2 = ctx.$implicit;
+    const type_r1 = ctx.$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("ngClass", ctx_r1.typeColor(type_r1.type.name));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(type_r2.type.name);
+    \u0275\u0275textInterpolate1(" ", type_r1.type.name, " ");
   }
 }
-function PokemonDetailPage_Conditional_4_For_34_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_6_For_47_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "li");
-    \u0275\u0275text(1);
+    \u0275\u0275elementStart(0, "div", 33)(1, "span", 38);
+    \u0275\u0275text(2);
+    \u0275\u0275pipe(3, "slice");
     \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "span", 39);
+    \u0275\u0275text(5);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "div", 40);
+    \u0275\u0275element(7, "progress", 41);
+    \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const s_r3 = ctx.$implicit;
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate2("", s_r3.stat.name, ": ", s_r3.base_stat);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind3(3, 9, s_r3.stat.name, 0, 15), " ");
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate(s_r3.base_stat);
+    \u0275\u0275advance(2);
+    \u0275\u0275classProp("progress-success", s_r3.base_stat >= 100)("progress-warning", s_r3.base_stat >= 60 && s_r3.base_stat < 100)("progress-error", s_r3.base_stat < 60);
+    \u0275\u0275property("value", s_r3.base_stat);
   }
 }
-function PokemonDetailPage_Conditional_4_For_39_Conditional_0_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_6_For_53_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "li", 16);
-    \u0275\u0275text(1);
+    \u0275\u0275elementStart(0, "span", 43);
+    \u0275\u0275text(1, "Oculta");
     \u0275\u0275elementEnd();
   }
-  if (rf & 2) {
-    const a_r4 = \u0275\u0275nextContext().$implicit;
-    \u0275\u0275advance();
-    \u0275\u0275textInterpolate(a_r4.ability.name);
-  }
 }
-function PokemonDetailPage_Conditional_4_For_39_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_6_For_53_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275conditionalCreate(0, PokemonDetailPage_Conditional_4_For_39_Conditional_0_Template, 2, 1, "li", 16);
+    \u0275\u0275elementStart(0, "div", 42);
+    \u0275\u0275text(1);
+    \u0275\u0275conditionalCreate(2, PokemonDetailPage_Conditional_6_For_53_Conditional_2_Template, 2, 0, "span", 43);
+    \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const a_r4 = ctx.$implicit;
-    \u0275\u0275conditional(a_r4.is_hidden ? 0 : -1);
+    \u0275\u0275classProp("badge-accent", a_r4.is_hidden);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1(" ", a_r4.ability.name, " ");
+    \u0275\u0275advance();
+    \u0275\u0275conditional(a_r4.is_hidden ? 2 : -1);
   }
 }
-function PokemonDetailPage_Conditional_4_Template(rf, ctx) {
+function PokemonDetailPage_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "article", 3)(1, "header", 4)(2, "figure");
-    \u0275\u0275template(3, PokemonDetailPage_Conditional_4_img_3_Template, 1, 4, "img", 5);
+    \u0275\u0275elementStart(0, "article", 5);
+    \u0275\u0275element(1, "div", 8);
+    \u0275\u0275elementStart(2, "figure", 9)(3, "span", 10);
+    \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "div")(5, "h1", 6);
-    \u0275\u0275text(6);
-    \u0275\u0275elementStart(7, "span", 7);
-    \u0275\u0275text(8);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(9, "p", 7);
+    \u0275\u0275elementStart(5, "div", 11);
+    \u0275\u0275element(6, "div", 12)(7, "img", 13);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(8, "div", 14)(9, "h1", 15);
     \u0275\u0275text(10);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(11, "div", 16);
+    \u0275\u0275repeaterCreate(12, PokemonDetailPage_Conditional_6_For_13_Template, 2, 2, "span", 17, _forTrack02);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(11, "section", 8)(12, "div")(13, "h3", 9);
-    \u0275\u0275text(14, "Datos");
+    \u0275\u0275elementStart(14, "div", 18)(15, "div", 19)(16, "div", 20)(17, "div", 21);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(18, "svg", 22);
+    \u0275\u0275element(19, "path", 23);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(20, "div", 24);
+    \u0275\u0275text(21, "Exp. Base");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(15, "ul", 10)(16, "li");
-    \u0275\u0275text(17);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "li");
-    \u0275\u0275text(19);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(20, "li");
-    \u0275\u0275text(21);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(22, "li");
+    \u0275\u0275elementStart(22, "div", 25);
     \u0275\u0275text(23);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(24, "div", 26);
+    \u0275\u0275text(25, "Puntos");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(26, "div", 20)(27, "div", 24);
+    \u0275\u0275text(28, "Altura");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(29, "div", 27);
+    \u0275\u0275text(30);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(31, "div", 26);
+    \u0275\u0275text(32, "Dec\xEDmetros");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(33, "div", 20)(34, "div", 24);
+    \u0275\u0275text(35, "Peso");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(36, "div", 27);
+    \u0275\u0275text(37);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(38, "div", 26);
+    \u0275\u0275text(39, "Hectogramos");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(24, "div")(25, "h3", 9);
-    \u0275\u0275text(26, "Tipos");
+    \u0275\u0275elementStart(40, "div", 28)(41, "h3", 29);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(42, "svg", 30);
+    \u0275\u0275element(43, "path", 31);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(27, "div", 11);
-    \u0275\u0275repeaterCreate(28, PokemonDetailPage_Conditional_4_For_29_Template, 2, 1, "span", 12, _forTrack02);
+    \u0275\u0275text(44, " Estad\xEDsticas de Combate ");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(30, "h3", 13);
-    \u0275\u0275text(31, "Estad\xEDsticas principales");
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(45, "div", 32);
+    \u0275\u0275repeaterCreate(46, PokemonDetailPage_Conditional_6_For_47_Template, 8, 13, "div", 33, _forTrack1);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(48, "div", 34)(49, "h3", 35);
+    \u0275\u0275text(50, "Habilidades");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(32, "ul", 14);
-    \u0275\u0275repeaterCreate(33, PokemonDetailPage_Conditional_4_For_34_Template, 2, 2, "li", null, _forTrack1);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(35, "h3", 13);
-    \u0275\u0275text(36, "Habilidades ocultas");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(37, "ul", 10);
-    \u0275\u0275repeaterCreate(38, PokemonDetailPage_Conditional_4_For_39_Template, 1, 1, null, null, _forTrack2);
+    \u0275\u0275elementStart(51, "div", 36);
+    \u0275\u0275repeaterCreate(52, PokemonDetailPage_Conditional_6_For_53_Template, 3, 4, "div", 37, _forTrack2);
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
@@ -47174,64 +47513,211 @@ function PokemonDetailPage_Conditional_4_Template(rf, ctx) {
     let tmp_8_0;
     let tmp_9_0;
     let tmp_10_0;
-    let tmp_11_0;
-    const ctx_r0 = \u0275\u0275nextContext();
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate1(" #", (tmp_1_0 = ctx_r1.pokemon()) == null ? null : tmp_1_0.id, " ");
     \u0275\u0275advance(3);
-    \u0275\u0275property("ngIf", (tmp_1_0 = ctx_r0.pokemon()) == null ? null : tmp_1_0.sprites == null ? null : tmp_1_0.sprites.front_default);
+    \u0275\u0275property("src", ((tmp_2_0 = ctx_r1.pokemon()) == null ? null : tmp_2_0.sprites == null ? null : tmp_2_0.sprites.other == null ? null : tmp_2_0.sprites.other["official-artwork"] == null ? null : tmp_2_0.sprites.other["official-artwork"].front_default) || ((tmp_2_0 = ctx_r1.pokemon()) == null ? null : tmp_2_0.sprites == null ? null : tmp_2_0.sprites.front_default), \u0275\u0275sanitizeUrl)("alt", (tmp_3_0 = ctx_r1.pokemon()) == null ? null : tmp_3_0.name);
     \u0275\u0275advance(3);
-    \u0275\u0275textInterpolate1("", (tmp_2_0 = ctx_r0.pokemon()) == null ? null : tmp_2_0.name, " ");
+    \u0275\u0275textInterpolate1(" ", (tmp_4_0 = ctx_r1.pokemon()) == null ? null : tmp_4_0.name, " ");
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("#", (tmp_3_0 = ctx_r0.pokemon()) == null ? null : tmp_3_0.id);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("Orden: ", (tmp_4_0 = ctx_r0.pokemon()) == null ? null : tmp_4_0.order);
+    \u0275\u0275repeater(((tmp_5_0 = ctx_r1.pokemon()) == null ? null : tmp_5_0.types) ?? \u0275\u0275pureFunction0(7, _c03));
+    \u0275\u0275advance(11);
+    \u0275\u0275textInterpolate((tmp_6_0 = ctx_r1.pokemon()) == null ? null : tmp_6_0.base_experience);
     \u0275\u0275advance(7);
-    \u0275\u0275textInterpolate1("Altura: ", (tmp_5_0 = ctx_r0.pokemon()) == null ? null : tmp_5_0.height);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("Peso: ", (tmp_6_0 = ctx_r0.pokemon()) == null ? null : tmp_6_0.weight);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("Experiencia base: ", (tmp_7_0 = ctx_r0.pokemon()) == null ? null : tmp_7_0.base_experience);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("N\xFAmero de movimientos: ", ((tmp_8_0 = ctx_r0.pokemon()) == null ? null : tmp_8_0.moves == null ? null : tmp_8_0.moves.length) ?? 0);
-    \u0275\u0275advance(5);
-    \u0275\u0275repeater(((tmp_9_0 = ctx_r0.pokemon()) == null ? null : tmp_9_0.types) ?? \u0275\u0275pureFunction0(8, _c02));
-    \u0275\u0275advance(5);
-    \u0275\u0275repeater(((tmp_10_0 = ctx_r0.pokemon()) == null ? null : tmp_10_0.stats) ?? \u0275\u0275pureFunction0(9, _c02));
-    \u0275\u0275advance(5);
-    \u0275\u0275repeater(((tmp_11_0 = ctx_r0.pokemon()) == null ? null : tmp_11_0.abilities) ?? \u0275\u0275pureFunction0(10, _c02));
+    \u0275\u0275textInterpolate((tmp_7_0 = ctx_r1.pokemon()) == null ? null : tmp_7_0.height);
+    \u0275\u0275advance(7);
+    \u0275\u0275textInterpolate((tmp_8_0 = ctx_r1.pokemon()) == null ? null : tmp_8_0.weight);
+    \u0275\u0275advance(9);
+    \u0275\u0275repeater(((tmp_9_0 = ctx_r1.pokemon()) == null ? null : tmp_9_0.stats) ?? \u0275\u0275pureFunction0(8, _c03));
+    \u0275\u0275advance(6);
+    \u0275\u0275repeater(((tmp_10_0 = ctx_r1.pokemon()) == null ? null : tmp_10_0.abilities) ?? \u0275\u0275pureFunction0(9, _c03));
   }
 }
 var PokemonDetailPage = class _PokemonDetailPage {
   route = inject2(ActivatedRoute);
   service = inject2(PokemonService);
+  typeColor(type) {
+    const colors = {
+      fire: "bg-red-500 text-white",
+      water: "bg-blue-500 text-white",
+      grass: "bg-green-500 text-white",
+      electric: "bg-yellow-400 text-black",
+      ice: "bg-cyan-300 text-black",
+      fighting: "bg-orange-700 text-white",
+      poison: "bg-purple-600 text-white",
+      ground: "bg-yellow-700 text-white",
+      flying: "bg-indigo-300 text-black",
+      psychic: "bg-pink-500 text-white",
+      bug: "bg-lime-600 text-white",
+      rock: "bg-stone-500 text-white",
+      ghost: "bg-indigo-700 text-white",
+      dragon: "bg-purple-800 text-white",
+      dark: "bg-gray-800 text-white",
+      steel: "bg-gray-500 text-white",
+      fairy: "bg-pink-300 text-black",
+      normal: "bg-zinc-400 text-black"
+    };
+    return colors[type] ?? "bg-gray-300 text-black";
+  }
   pokemon = toSignal(this.route.paramMap.pipe(map((params) => params.get("id")), switchMap((id) => this.service.getPokemonById(id))), { initialValue: null });
   static \u0275fac = function PokemonDetailPage_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _PokemonDetailPage)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PokemonDetailPage, selectors: [["app-pokemon-detail-page"]], decls: 5, vars: 2, consts: [[1, "container", "mx-auto", "p-4"], ["routerLink", "/home", 1, "btn", "btn-ghost", "mb-4"], [1, "card", "p-6", "flex", "justify-center", "items-center"], [1, "card", "p-6", "shadow-md", "rounded-md"], [1, "flex", "items-center", "gap-4", "mb-4"], ["class", "w-28 h-28 object-contain", 3, "src", "alt", 4, "ngIf"], [1, "text-2xl", "font-bold", "capitalize"], [1, "text-sm", "text-muted"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "gap-4"], [1, "font-semibold"], [1, "list-disc", "pl-5"], [1, "flex", "gap-2", "flex-wrap", "mt-2"], [1, "badge", "badge-outline", "capitalize"], [1, "mt-4", "font-semibold"], [1, "list-none", "mt-2"], [1, "w-28", "h-28", "object-contain", 3, "src", "alt"], [1, "capitalize"]], template: function PokemonDetailPage_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PokemonDetailPage, selectors: [["app-pokemon-detail-page"]], decls: 7, vars: 2, consts: [[1, "container", "mx-auto", "p-4", "lg:p-8", "max-w-5xl", "font-sans"], ["routerLink", "/home", 1, "btn", "btn-ghost", "gap-2", "mb-6", "hover:bg-base-200", "group"], ["xmlns", "http://www.w3.org/2000/svg", "width", "24", "height", "24", "viewBox", "0 0 24 24", "fill", "none", "stroke", "currentColor", "stroke-width", "2", "stroke-linecap", "round", "stroke-linejoin", "round", 1, "group-hover:-translate-x-1", "transition-transform"], ["d", "m15 18-6-6 6-6"], [1, "card", "w-full", "h-96", "bg-base-100", "shadow-xl", "animate-pulse", "flex", "flex-col", "items-center", "justify-center", "gap-4"], [1, "card", "lg:card-side", "bg-base-100", "shadow-2xl", "overflow-hidden", "border", "border-base-200", "rounded-3xl", "relative"], [1, "loading", "loading-ring", "loading-lg", "text-primary", "scale-150"], [1, "text-xl", "font-bold", "opacity-50", "tracking-widest"], [1, "absolute", "top-0", "w-full", "h-32", "bg-gradient-to-b", "from-primary/10", "to-transparent", "z-0", "pointer-events-none"], [1, "lg:w-1/3", "bg-base-200/50", "p-8", "flex", "flex-col", "items-center", "justify-center", "relative", "z-10", "group"], [1, "absolute", "top-4", "right-6", "text-6xl", "md:text-8xl", "font-black", "text-base-300/50", "select-none", "z-0"], [1, "relative", "z-10", "transition-transform", "duration-500", "hover:scale-110", "hover:rotate-3", "cursor-pointer"], [1, "absolute", "inset-0", "bg-primary/30", "blur-3xl", "rounded-full", "scale-75"], [1, "w-64", "h-64", "lg:w-80", "lg:h-80", "object-contain", "drop-shadow-2xl", "relative", 3, "src", "alt"], [1, "text-center", "mt-6", "z-10"], [1, "text-4xl", "font-black", "capitalize", "tracking-tight", "mb-3", "drop-shadow-sm"], [1, "flex", "flex-wrap", "justify-center", "gap-2"], [1, "badge", "badge-lg", "border-none", "text-white", "font-bold", "shadow-md", "uppercase", "tracking-wider", "py-4", "px-6", 3, "ngClass"], [1, "card-body", "lg:w-2/3", "p-6", "lg:p-10", "z-10"], [1, "stats", "stats-vertical", "sm:stats-horizontal", "shadow-sm", "border", "border-base-200", "bg-base-100", "w-full", "mb-8"], [1, "stat", "place-items-center"], [1, "stat-figure", "text-secondary"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", 1, "inline-block", "w-8", "h-8", "stroke-current"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M13 10V3L4 14h7v7l9-11h-7z"], [1, "stat-title", "font-bold"], [1, "stat-value", "text-primary"], [1, "stat-desc"], [1, "stat-value"], [1, "space-y-5"], [1, "text-xl", "font-bold", "flex", "items-center", "gap-2", "border-b", "pb-2", "border-base-200"], ["xmlns", "http://www.w3.org/2000/svg", "fill", "none", "viewBox", "0 0 24 24", "stroke", "currentColor", 1, "h-6", "w-6", "text-primary"], ["stroke-linecap", "round", "stroke-linejoin", "round", "stroke-width", "2", "d", "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"], [1, "grid", "gap-4"], [1, "grid", "grid-cols-12", "items-center", "gap-4", "group"], [1, "mt-8", "pt-6", "border-t", "border-base-200"], [1, "text-sm", "font-bold", "uppercase", "opacity-50", "mb-3", "tracking-widest"], [1, "flex", "flex-wrap", "gap-3"], [1, "badge", "badge-outline", "p-4", "gap-2", "capitalize", "font-semibold", "hover:bg-base-200", "transition-colors", "cursor-default", 3, "badge-accent"], [1, "col-span-4", "sm:col-span-3", "font-bold", "uppercase", "text-xs", "tracking-wider", "opacity-60", "group-hover:opacity-100", "transition-opacity"], [1, "col-span-2", "sm:col-span-1", "text-right", "font-black", "text-sm"], [1, "col-span-6", "sm:col-span-8"], ["max", "160", 1, "progress", "w-full", "h-3", "transition-all", "duration-1000", 3, "value"], [1, "badge", "badge-outline", "p-4", "gap-2", "capitalize", "font-semibold", "hover:bg-base-200", "transition-colors", "cursor-default"], [1, "badge", "badge-xs", "badge-ghost", "border-none", "bg-base-300"]], template: function PokemonDetailPage_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "section", 0)(1, "a", 1);
-      \u0275\u0275text(2, "\u2190 Volver");
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275elementStart(2, "svg", 2);
+      \u0275\u0275element(3, "path", 3);
       \u0275\u0275elementEnd();
-      \u0275\u0275conditionalCreate(3, PokemonDetailPage_Conditional_3_Template, 2, 0, "div", 2);
-      \u0275\u0275conditionalCreate(4, PokemonDetailPage_Conditional_4_Template, 40, 11, "article", 3);
+      \u0275\u0275text(4, " Volver a la Pok\xE9dex ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275conditionalCreate(5, PokemonDetailPage_Conditional_5_Template, 4, 0, "div", 4);
+      \u0275\u0275conditionalCreate(6, PokemonDetailPage_Conditional_6_Template, 54, 10, "article", 5);
       \u0275\u0275elementEnd();
     }
     if (rf & 2) {
-      \u0275\u0275advance(3);
-      \u0275\u0275conditional(!ctx.pokemon() ? 3 : -1);
+      \u0275\u0275advance(5);
+      \u0275\u0275conditional(!ctx.pokemon() ? 5 : -1);
       \u0275\u0275advance();
-      \u0275\u0275conditional(ctx.pokemon() ? 4 : -1);
+      \u0275\u0275conditional(ctx.pokemon() ? 6 : -1);
     }
-  }, dependencies: [CommonModule, NgIf, RouterModule, RouterLink], styles: ["\n\n.card[_ngcontent-%COMP%] {\n  background: var(--p-2, white);\n}\n.badge[_ngcontent-%COMP%] {\n  padding: 0.25rem 0.5rem;\n  border-radius: 0.375rem;\n  border: 1px solid rgba(0, 0, 0, 0.08);\n}\n.text-muted[_ngcontent-%COMP%] {\n  opacity: 0.7;\n}\n/*# sourceMappingURL=/prueba-pokemon/pokemon-detail-page.css.map */"] });
+  }, dependencies: [CommonModule, NgClass, RouterModule, RouterLink, SlicePipe], styles: ["\n\n.card[_ngcontent-%COMP%] {\n  background: var(--p-2, white);\n}\n.badge[_ngcontent-%COMP%] {\n  padding: 0.25rem 0.5rem;\n  border-radius: 0.375rem;\n  border: 1px solid rgba(0, 0, 0, 0.08);\n}\n.text-muted[_ngcontent-%COMP%] {\n  opacity: 0.7;\n}\n/*# sourceMappingURL=/prueba-pokemon/pokemon-detail-page.css.map */"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PokemonDetailPage, [{
     type: Component,
-    args: [{ selector: "app-pokemon-detail-page", standalone: true, imports: [CommonModule, RouterModule], template: '<section class="container mx-auto p-4">\r\n  <a routerLink="/home" class="btn btn-ghost mb-4">\u2190 Volver</a>\r\n\r\n  @if(!pokemon()) {\r\n    <div class="card p-6 flex justify-center items-center">Cargando detalle...</div>\r\n  }\r\n\r\n  @if(pokemon()) {\r\n    <article class="card p-6 shadow-md rounded-md">\r\n      <header class="flex items-center gap-4 mb-4">\r\n        <figure>\r\n          <img src="{{ pokemon()?.sprites?.front_default }}" alt="{{ pokemon()?.name }}" class="w-28 h-28 object-contain" *ngIf="pokemon()?.sprites?.front_default" />\r\n        </figure>\r\n        <div>\r\n          <h1 class="text-2xl font-bold capitalize">{{ pokemon()?.name }} <span class="text-sm text-muted">#{{ pokemon()?.id }}</span></h1>\r\n          <p class="text-sm text-muted">Orden: {{ pokemon()?.order }}</p>\r\n        </div>\r\n      </header>\r\n\r\n      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">\r\n        <div>\r\n          <h3 class="font-semibold">Datos</h3>\r\n          <ul class="list-disc pl-5">\r\n            <li>Altura: {{ pokemon()?.height }}</li>\r\n            <li>Peso: {{ pokemon()?.weight }}</li>\r\n            <li>Experiencia base: {{ pokemon()?.base_experience }}</li>\r\n            <li>N\xFAmero de movimientos: {{ pokemon()?.moves?.length ?? 0 }}</li>\r\n          </ul>\r\n        </div>\r\n\r\n        <div>\r\n          <h3 class="font-semibold">Tipos</h3>\r\n          <div class="flex gap-2 flex-wrap mt-2">\r\n            @for(type of pokemon()?.types ?? []; track type.slot) {\r\n              <span class="badge badge-outline capitalize">{{ type.type.name }}</span>\r\n            }\r\n          </div>\r\n\r\n          <h3 class="mt-4 font-semibold">Estad\xEDsticas principales</h3>\r\n          <ul class="list-none mt-2">\r\n            @for(s of pokemon()?.stats ?? []; track s.stat.name) {\r\n              <li>{{ s.stat.name }}: {{ s.base_stat }}</li>\r\n            }\r\n          </ul>\r\n\r\n          <h3 class="mt-4 font-semibold">Habilidades ocultas</h3>\r\n          <ul class="list-disc pl-5">\r\n            @for(a of pokemon()?.abilities ?? []; track a.ability.name) {\r\n              @if(a.is_hidden) {\r\n                <li class="capitalize">{{ a.ability.name }}</li>\r\n              }\r\n            }\r\n          </ul>\r\n        </div>\r\n      </section>\r\n    </article>\r\n  }\r\n</section>\r\n', styles: ["/* src/app/features/pokemon-detail-page/pokemon-detail-page.css */\n.card {\n  background: var(--p-2, white);\n}\n.badge {\n  padding: 0.25rem 0.5rem;\n  border-radius: 0.375rem;\n  border: 1px solid rgba(0, 0, 0, 0.08);\n}\n.text-muted {\n  opacity: 0.7;\n}\n/*# sourceMappingURL=/prueba-pokemon/pokemon-detail-page.css.map */\n"] }]
+    args: [{ selector: "app-pokemon-detail-page", standalone: true, imports: [CommonModule, RouterModule], template: `<section class="container mx-auto p-4 lg:p-8 max-w-5xl font-sans">\r
+  \r
+  <a routerLink="/home" class="btn btn-ghost gap-2 mb-6 hover:bg-base-200 group">\r
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform"><path d="m15 18-6-6 6-6"/></svg>\r
+    Volver a la Pok\xE9dex\r
+  </a>\r
+\r
+  @if(!pokemon()) {\r
+    <div class="card w-full h-96 bg-base-100 shadow-xl animate-pulse flex flex-col items-center justify-center gap-4">\r
+      <span class="loading loading-ring loading-lg text-primary scale-150"></span>\r
+      <span class="text-xl font-bold opacity-50 tracking-widest">ANALIZANDO DATOS...</span>\r
+    </div>\r
+  }\r
+\r
+  @if(pokemon()) {\r
+    <article class="card lg:card-side bg-base-100 shadow-2xl overflow-hidden border border-base-200 rounded-3xl relative">\r
+      \r
+      <div class="absolute top-0 w-full h-32 bg-gradient-to-b from-primary/10 to-transparent z-0 pointer-events-none"></div>\r
+\r
+      <figure class="lg:w-1/3 bg-base-200/50 p-8 flex flex-col items-center justify-center relative z-10 group">\r
+        \r
+        <span class="absolute top-4 right-6 text-6xl md:text-8xl font-black text-base-300/50 select-none z-0">\r
+          #{{ pokemon()?.id }}\r
+        </span>\r
+\r
+        <div class="relative z-10 transition-transform duration-500 hover:scale-110 hover:rotate-3 cursor-pointer">\r
+          <div class="absolute inset-0 bg-primary/30 blur-3xl rounded-full scale-75"></div>\r
+          \r
+          <img\r
+            [src]="pokemon()?.sprites?.other?.['official-artwork']?.front_default || pokemon()?.sprites?.front_default"\r
+            [alt]="pokemon()?.name"\r
+            class="w-64 h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl relative"\r
+          />\r
+        </div>\r
+\r
+        <div class="text-center mt-6 z-10">\r
+          <h1 class="text-4xl font-black capitalize tracking-tight mb-3 drop-shadow-sm">\r
+            {{ pokemon()?.name }}\r
+          </h1>\r
+          <div class="flex flex-wrap justify-center gap-2">\r
+            @for(type of pokemon()?.types ?? []; track type.slot) {\r
+              <span \r
+                class="badge badge-lg border-none text-white font-bold shadow-md uppercase tracking-wider py-4 px-6"\r
+                [ngClass]="typeColor(type.type.name)">\r
+                {{ type.type.name }}\r
+              </span>\r
+            }\r
+          </div>\r
+        </div>\r
+      </figure>\r
+\r
+      <div class="card-body lg:w-2/3 p-6 lg:p-10 z-10">\r
+        \r
+        <div class="stats stats-vertical sm:stats-horizontal shadow-sm border border-base-200 bg-base-100 w-full mb-8">\r
+          \r
+          <div class="stat place-items-center">\r
+            <div class="stat-figure text-secondary">\r
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>\r
+            </div>\r
+            <div class="stat-title font-bold">Exp. Base</div>\r
+            <div class="stat-value text-primary">{{ pokemon()?.base_experience }}</div>\r
+            <div class="stat-desc">Puntos</div>\r
+          </div>\r
+          \r
+          <div class="stat place-items-center">\r
+            <div class="stat-title font-bold">Altura</div>\r
+            <div class="stat-value">{{ pokemon()?.height }}</div>\r
+            <div class="stat-desc">Dec\xEDmetros</div>\r
+          </div>\r
+          \r
+          <div class="stat place-items-center">\r
+            <div class="stat-title font-bold">Peso</div>\r
+            <div class="stat-value">{{ pokemon()?.weight }}</div>\r
+            <div class="stat-desc">Hectogramos</div>\r
+          </div>\r
+          \r
+        </div>\r
+\r
+        <div class="space-y-5">\r
+          <h3 class="text-xl font-bold flex items-center gap-2 border-b pb-2 border-base-200">\r
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>\r
+            Estad\xEDsticas de Combate\r
+          </h3>\r
+\r
+          <div class="grid gap-4">\r
+            @for(s of pokemon()?.stats ?? []; track s.stat.name) {\r
+              <div class="grid grid-cols-12 items-center gap-4 group">\r
+                <span class="col-span-4 sm:col-span-3 font-bold uppercase text-xs tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">\r
+                  {{ s.stat.name | slice:0:15 }}\r
+                </span>\r
+                \r
+                <span class="col-span-2 sm:col-span-1 text-right font-black text-sm">{{ s.base_stat }}</span>\r
+                \r
+                <div class="col-span-6 sm:col-span-8">\r
+                  <progress \r
+                    class="progress w-full h-3 transition-all duration-1000" \r
+                    [class.progress-success]="s.base_stat >= 100" \r
+                    [class.progress-warning]="s.base_stat >= 60 && s.base_stat < 100" \r
+                    [class.progress-error]="s.base_stat < 60"\r
+                    [value]="s.base_stat" \r
+                    max="160">\r
+                  </progress>\r
+                </div>\r
+              </div>\r
+            }\r
+          </div>\r
+        </div>\r
+\r
+        <div class="mt-8 pt-6 border-t border-base-200">\r
+          <h3 class="text-sm font-bold uppercase opacity-50 mb-3 tracking-widest">Habilidades</h3>\r
+          <div class="flex flex-wrap gap-3">\r
+            @for(a of pokemon()?.abilities ?? []; track a.ability.name) {\r
+              <div class="badge badge-outline p-4 gap-2 capitalize font-semibold hover:bg-base-200 transition-colors cursor-default" [class.badge-accent]="a.is_hidden">\r
+                {{ a.ability.name }}\r
+                @if(a.is_hidden) { \r
+                  <span class="badge badge-xs badge-ghost border-none bg-base-300">Oculta</span> \r
+                }\r
+              </div>\r
+            }\r
+          </div>\r
+        </div>\r
+\r
+      </div>\r
+    </article>\r
+  }\r
+</section>`, styles: ["/* src/app/features/pokemon-detail-page/pokemon-detail-page.css */\n.card {\n  background: var(--p-2, white);\n}\n.badge {\n  padding: 0.25rem 0.5rem;\n  border-radius: 0.375rem;\n  border: 1px solid rgba(0, 0, 0, 0.08);\n}\n.text-muted {\n  opacity: 0.7;\n}\n/*# sourceMappingURL=/prueba-pokemon/pokemon-detail-page.css.map */\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PokemonDetailPage, { className: "PokemonDetailPage", filePath: "src/app/features/pokemon-detail-page/pokemon-detail-page.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PokemonDetailPage, { className: "PokemonDetailPage", filePath: "src/app/features/pokemon-detail-page/pokemon-detail-page.ts", lineNumber: 16 });
 })();
 
 // src/app/app.routes.ts
@@ -47261,28 +47747,50 @@ var appConfig = {
   ]
 };
 
-// src/app/features/componentes/header-page/header-page.ts
-var HeaderPage = class _HeaderPage {
-  static \u0275fac = function HeaderPage_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HeaderPage)();
+// src/app/features/componentes/footer-page/footer-page.ts
+var FooterPage = class _FooterPage {
+  static \u0275fac = function FooterPage_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _FooterPage)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderPage, selectors: [["app-header-page"]], decls: 3, vars: 0, template: function HeaderPage_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _FooterPage, selectors: [["app-footer-page"]], decls: 16, vars: 0, consts: [[1, "footer", "sm:footer-horizontal", "bg-neutral", "text-neutral-content", "items-center", "p-4"], [1, "grid-flow-col", "items-center"], ["width", "36", "height", "36", "viewBox", "0 0 24 24", "xmlns", "http://www.w3.org/2000/svg", "fill-rule", "evenodd", "clip-rule", "evenodd", 1, "fill-current"], ["d", "M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"], [1, "grid-flow-col", "gap-4", "md:place-self-center", "md:justify-self-end"], ["xmlns", "http://www.w3.org/2000/svg", "width", "24", "height", "24", "viewBox", "0 0 24 24", 1, "fill-current"], ["d", "M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"], ["d", "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"], ["d", "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"]], template: function FooterPage_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275domElementStart(0, "p");
-      \u0275\u0275text(1, "header-page works!");
+      \u0275\u0275domElementStart(0, "footer", 0)(1, "aside", 1);
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElementStart(2, "svg", 2);
+      \u0275\u0275domElement(3, "path", 3);
       \u0275\u0275domElementEnd();
-      \u0275\u0275text(2, ",\n");
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275domElementStart(4, "p");
+      \u0275\u0275text(5, "Copyright \xA9 2025 - All rights reserved");
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275domElementStart(6, "nav", 4)(7, "a");
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElementStart(8, "svg", 5);
+      \u0275\u0275domElement(9, "path", 6);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275domElementStart(10, "a");
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElementStart(11, "svg", 5);
+      \u0275\u0275domElement(12, "path", 7);
+      \u0275\u0275domElementEnd()();
+      \u0275\u0275namespaceHTML();
+      \u0275\u0275domElementStart(13, "a");
+      \u0275\u0275namespaceSVG();
+      \u0275\u0275domElementStart(14, "svg", 5);
+      \u0275\u0275domElement(15, "path", 8);
+      \u0275\u0275domElementEnd()()()();
     }
   }, encapsulation: 2, changeDetection: 0 });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HeaderPage, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FooterPage, [{
     type: Component,
-    args: [{ selector: "app-header-page", standalone: true, imports: [], changeDetection: ChangeDetectionStrategy.OnPush, template: "<p>header-page works!</p>,\n" }]
+    args: [{ selector: "app-footer-page", standalone: true, imports: [], changeDetection: ChangeDetectionStrategy.OnPush, template: '<footer class="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">\n  <aside class="grid-flow-col items-center">\n    <svg\n      width="36"\n      height="36"\n      viewBox="0 0 24 24"\n      xmlns="http://www.w3.org/2000/svg"\n      fill-rule="evenodd"\n      clip-rule="evenodd"\n      class="fill-current">\n      <path\n        d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>\n    </svg>\n    <p>Copyright \xA9 2025 - All rights reserved</p>\n  </aside>\n  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">\n    <a>\n      <svg\n        xmlns="http://www.w3.org/2000/svg"\n        width="24"\n        height="24"\n        viewBox="0 0 24 24"\n        class="fill-current">\n        <path\n          d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>\n      </svg>\n    </a>\n    <a>\n      <svg\n        xmlns="http://www.w3.org/2000/svg"\n        width="24"\n        height="24"\n        viewBox="0 0 24 24"\n        class="fill-current">\n        <path\n          d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>\n      </svg>\n    </a>\n    <a>\n      <svg\n        xmlns="http://www.w3.org/2000/svg"\n        width="24"\n        height="24"\n        viewBox="0 0 24 24"\n        class="fill-current">\n        <path\n          d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>\n      </svg>\n    </a>\n  </nav>\n</footer>' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HeaderPage, { className: "HeaderPage", filePath: "src/app/features/componentes/header-page/header-page.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FooterPage, { className: "FooterPage", filePath: "src/app/features/componentes/footer-page/footer-page.ts", lineNumber: 10 });
 })();
 
 // src/app/app.ts
@@ -47291,20 +47799,28 @@ var App = class _App {
   static \u0275fac = function App_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _App)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _App, selectors: [["app-root"]], decls: 1, vars: 0, template: function App_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _App, selectors: [["app-root"]], decls: 6, vars: 0, consts: [[1, "m-auto", "grow", "flex", "flex-col", "min-h-screen", "pt-16"]], template: function App_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275element(0, "router-outlet");
+      \u0275\u0275elementStart(0, "header");
+      \u0275\u0275element(1, "app-header-page");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(2, "main", 0);
+      \u0275\u0275element(3, "router-outlet");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(4, "footer");
+      \u0275\u0275element(5, "app-footer-page");
+      \u0275\u0275elementEnd();
     }
-  }, dependencies: [RouterOutlet], encapsulation: 2 });
+  }, dependencies: [RouterOutlet, HeaderPage, FooterPage], encapsulation: 2 });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(App, [{
     type: Component,
-    args: [{ selector: "app-root", standalone: true, imports: [RouterOutlet, HeaderPage], template: "\r\n<router-outlet />\r\n" }]
+    args: [{ selector: "app-root", standalone: true, imports: [RouterOutlet, HeaderPage, FooterPage], template: '<header><app-header-page></app-header-page></header>\r\n<main class="m-auto grow flex flex-col min-h-screen pt-16"><router-outlet /></main>\r\n\r\n\r\n<footer><app-footer-page> </app-footer-page></footer>\r\n\r\n' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 13 });
 })();
 
 // src/main.ts
