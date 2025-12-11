@@ -16,19 +16,28 @@
             "outputPath": "dist/pruba1",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+
             "baseHref": "/prueba-pokemon/",
             "deployUrl": "/prueba-pokemon/",
+
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
-            "styles": [
 
+            "styles": [
               "src/styles.css"
             ]
           },
+
           "configurations": {
             "production": {
               "budgets": [
@@ -44,9 +53,11 @@
                 }
               ],
               "outputHashing": "all",
+
               "baseHref": "/prueba-pokemon/",
               "deployUrl": "/prueba-pokemon/"
             },
+
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -59,8 +70,10 @@
               ]
             }
           },
+
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -73,24 +86,35 @@
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "tsconfig.spec.json",
+
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
+
             "styles": [
               "src/styles.css"
             ]
           }
         },
+
         "deploy": {
           "builder": "angular-cli-ghpages:deploy"
         }
